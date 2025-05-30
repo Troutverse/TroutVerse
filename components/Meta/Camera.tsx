@@ -12,9 +12,6 @@ export default function Camera({ target }: { target: [number, number, number] })
   useFrame(() => {
     const offset = new Vector3();
     controlsRef.current?.object.getWorldPosition(offset);
-
-    const desiredPos = targetVec.clone().add(offset.sub(targetVec).setLength(10)).setY(targetVec.y + 5);
-    
     camera.lookAt(targetVec);
   });
 

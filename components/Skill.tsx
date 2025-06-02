@@ -10,33 +10,33 @@ const skills = [
     category: 'Frontend',
     items: [
       { name: 'React', image: '/React.png' },
-      { name: 'Next.js', image: '/skills/nextjs.png' },
-      { name: 'TypeScript', image: '/skills/typescript.png' },
-      { name: 'TailwindCSS', image: '/skills/tailwindcss.png' },
-      { name: 'Vue.js', image: '/skills/vue.png' },
+      { name: 'Next.js', image: '/Nextjs.png' },
+      { name: 'TypeScript', image: '/TypeScript.png' },
+      { name: 'TailwindCSS', image: '/TailwindCSS.png' },
+      { name: 'Vue.js', image: '/Vuejs.png' },
     ],
   },
   {
     category: 'Backend',
     items: [
-      { name: 'Python', image: '/skills/python.png' },
-      { name: 'PyTorch', image: '/skills/pytorch.png' },
-      { name: 'FastAPI', image: '/skills/fastapi.png' },
+      { name: 'Python', image: '/Python.png' },
+      { name: 'PyTorch', image: '/PyTorch.webp' },
+      { name: 'FastAPI', image: '/FastAPI.png' },
     ],
   },
   {
     category: 'Metaverse',
     items: [
-      { name: 'WebGL', image: '/skills/webgl.png' },
-      { name: 'Three.js', image: '/skills/threejs.png' },
+      { name: 'WebGL', image: '/WebGL.png' },
+      { name: 'Three.js', image: '/Threejs.png' },
     ],
   },
   {
     category: 'AI',
     items: [
-      { name: 'Machine Learning', image: '/skills/ml.png' },
-      { name: 'Deep Learning', image: '/skills/dl.png' },
-      { name: 'Computer Vision', image: '/skills/cv.png' },
+      { name: 'Machine Learning', image: '/MachineLearning.png' },
+      { name: 'Deep Learning', image: '/DeepLearning.png' },
+      { name: 'Computer Vision', image: '/ComputerVision.png' },
     ],
   },
 ];

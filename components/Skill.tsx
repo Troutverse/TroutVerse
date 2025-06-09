@@ -29,6 +29,7 @@ const skills = [
     items: [
       { name: 'WebGL', image: '/WebGL.png' },
       { name: 'Three.js', image: '/Threejs.png' },
+      { name: 'Unity', image: '/Unity.svg' },
     ],
   },
   {
@@ -44,7 +45,7 @@ const skills = [
 export default function Skill() {
   return (
     <section className="max-w-5xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-8 text-center text-blue-700">My Skills</h1>
+      <div className="text-4xl font-bold mb-8 text-center text-blue-700">Skills</div>
       {skills.map((category) => (
         <div key={category.category} className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">{category.category}</h2>
@@ -64,7 +65,7 @@ function SkillItem({ name, image }: { name: string; image: string }) {
 
   return (
     <div className="flex flex-col items-center bg-gray-100 rounded-lg shadow p-4">
-      <div className="w-20 h-20 mb-2 relative">
+      <div className="w-20 h-20 relative">
         <Image
           src={src}
           alt={name}
@@ -73,7 +74,6 @@ function SkillItem({ name, image }: { name: string; image: string }) {
           onError={() => setSrc(DEFAULT_IMAGE)}
         />
       </div>
-      <span className="text-sm font-medium">{name}</span>
     </div>
   );
 }

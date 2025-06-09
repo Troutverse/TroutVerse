@@ -1,28 +1,13 @@
-import ProjectCard from "@/components/ProjectCard";
+import ProjectCard from '@/components/ProjectCard';
 
 export default function Projects() {
-  const projectList = [
-    {
-      title: 'Bzero',
-      description: 'Community platform with CRUD and commenting features.',
-      techStack: ['React', 'Django'],
-      githubLink: 'https://github.com/yourusername/bzero',
-      demoLink: 'https://bzero.vercel.app',
-    },
-    {
-      title: 'UOUR',
-      description: 'Interactive community website using Next.js.',
-      techStack: ['Next.js', 'React'],
-      githubLink: 'https://github.com/yourusername/uour',
-      demoLink: 'https://uour.vercel.app',
-    },
-  ];
+  const Projects = ['Project One', 'Project Two', 'Project Three'];
 
   return (
-    <section className="mt-8 grid gap-4 grid-cols-1 md:grid-cols-2">
-      {projectList.map((project, index) => (
-        <ProjectCard key={index} {...project} />
+    <div className="mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4">
+      {Projects.map((title) => (
+        <ProjectCard key={title} title={title} />
       ))}
-    </section>
+    </div>
   );
 }

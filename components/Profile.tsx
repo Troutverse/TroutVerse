@@ -17,7 +17,7 @@ export default function Profile() {
         whileHover={{ rotate: 360, scale: 1.1, transition: { duration: 1, ease: "easeInOut" } }}
       >
         <Image
-          src="/Profile.jpg"
+          src="/Profile.png"
           alt="Profile Picture"
           width={160}
           height={160}

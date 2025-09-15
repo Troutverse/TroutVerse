@@ -32,14 +32,6 @@ const skills = [
       { name: 'Unity', image: '/Unity.svg' },
     ],
   },
-  {
-    category: 'AI',
-    items: [
-      { name: 'Machine Learning', image: '/MachineLearning.png' },
-      { name: 'Deep Learning', image: '/DeepLearning.png' },
-      { name: 'Computer Vision', image: '/ComputerVision.png' },
-    ],
-  },
 ];
 
 export default function Skill() {

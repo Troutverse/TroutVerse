@@ -11,14 +11,6 @@ export default function Navbar() {
         <li>
           <Link href="/Projects">Projects</Link>
         </li>
-        <li>
-          <Link href="/AI">AI</Link>
-        </li>
-        <li>
-          <Link href="/World">World</Link>
-        </li>
-        <li>
-        </li>
       </ul>
     </nav>
   );

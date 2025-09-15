@@ -41,7 +41,7 @@ export default function Profile() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          Age: 25
+          Age: 26
         </motion.p>
 
         <motion.p
@@ -50,7 +50,7 @@ export default function Profile() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          Metaverse + AI 
+          Metaverse + VR + XR
         </motion.p>
 
         <motion.p

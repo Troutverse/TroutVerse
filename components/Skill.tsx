@@ -37,7 +37,6 @@ const skills = [
 export default function Skill() {
   return (
     <section className="max-w-5xl mx-auto p-6">
-      <div className="text-4xl font-bold mb-8 text-center text-blue-700">Skills</div>
       {skills.map((category) => (
         <div key={category.category} className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">{category.category}</h2>

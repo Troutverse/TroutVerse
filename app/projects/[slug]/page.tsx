@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import CodeSnippet from '@/components/CodeSnippet';
 
 export default function ProjectDetailPage() {
 
@@ -11,26 +12,23 @@ export default function ProjectDetailPage() {
 
     return (
         <article className="bg-white">
-            <header className="relative h-[50vh] w-full">
-                <Image
-                    src={project.heroImage}
-                    alt={`${project.title} 대표 이미지`}
-                    fill
-                    className="object-cover"
-                    priority
+            <header className="relative h-200 w-full overflow-hidden">
+                <video
+                    src={project.heroVideo}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-4">
+
+                <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-4">
                     <h1 className="text-4xl md:text-6xl font-extrabold">{project.title}</h1>
                     <p className="mt-4 text-lg md:text-xl max-w-2xl">{project.description}</p>
                     <div className="mt-8 flex gap-4">
                         {project.githubUrl && (
                             <Link href={project.githubUrl} target="_blank" className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition-colors">
                                 GitHub
-                            </Link>
-                        )}
-                        {project.demoUrl && (
-                            <Link href={project.demoUrl} target="_blank" className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-lg transition-colors">
-                                Play Demo
                             </Link>
                         )}
                     </div>
@@ -81,29 +79,45 @@ export default function ProjectDetailPage() {
                                         <p className="text-gray-700">{feature.solution}</p>
                                     </div>
                                     <div className={index % 2 === 0 ? 'md:order-2' : 'md:order-1'}>
-                                        <Image src={feature.image} alt={feature.title} width={500} height={300} className="rounded-lg shadow-lg w-full" />
+                                        {feature.media.type === 'video' ? (
+                                            <video
+                                                src={feature.media.src}
+                                                width={500}
+                                                height={300}
+                                                className="rounded-lg shadow-lg w-full"
+                                                autoPlay
+                                                loop
+                                                muted
+                                                playsInline
+                                            />
+                                        ) : (
+                                            <Image
+                                                src={feature.media.src}
+                                                alt={feature.title}
+                                                width={500}
+                                                height={300}
+                                                className="rounded-lg shadow-lg w-full"
+                                                unoptimized={true}
+                                            />
+                                        )}
                                     </div>
                                 </div>
 
                                 {feature.codeSnippet && (
-                                    <div className="mt-8 w-full">
-                                        <SyntaxHighlighter language="csharp" style={vscDarkPlus} showLineNumbers>
-                                            {feature.codeSnippet.trim()}
-                                        </SyntaxHighlighter>
-                                    </div>
+                                    <CodeSnippet code={feature.codeSnippet} language="csharp" />
                                 )}
                             </div>
                         ))}
                     </div>
                 </section>
 
-                <section>
+                {/* <section>
                     <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b-2 pb-2">프로젝트 회고</h2>
                     <div className="bg-gray-50 p-6 rounded-lg">
                         <h3 className="font-semibold text-lg mb-2">배운 점 (What I Learned)</h3>
                         <p className="text-gray-700 leading-relaxed">{project.learnings}</p>
                     </div>
-                </section>
+                </section> */}
             </main>
         </article>
     );

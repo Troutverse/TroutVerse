@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 
 export const metadata = {
   title: 'My Portfolio',
-  description: 'Frontend Developer Portfolio',
+  description: 'VR Developer Portfolio',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

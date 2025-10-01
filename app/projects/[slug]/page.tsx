@@ -1,8 +1,6 @@
 import { projectsData } from '@/components/ProjectData';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import CodeSnippet from '@/components/CodeSnippet';
 
 export default function ProjectDetailPage() {
@@ -21,7 +19,6 @@ export default function ProjectDetailPage() {
                     muted
                     playsInline
                 />
-
                 <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-4">
                     <h1 className="text-4xl md:text-6xl font-extrabold">{project.title}</h1>
                     <p className="mt-4 text-lg md:text-xl max-w-2xl">{project.description}</p>
@@ -70,54 +67,49 @@ export default function ProjectDetailPage() {
                     <div className="space-y-16">
                         {project.featureDetails.map((feature, index) => (
                             <div key={index}>
-                                <div className="grid md:grid-cols-2 gap-8 items-center">
-                                    <div className={index % 2 === 0 ? 'md:order-1' : 'md:order-2'}>
-                                        <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                                        <p className="font-semibold text-gray-500 mb-2">Problem</p>
-                                        <p className="text-gray-700 mb-4">{feature.problem}</p>
-                                        <p className="font-semibold text-gray-500 mb-2">Solution</p>
-                                        <p className="text-gray-700">{feature.solution}</p>
-                                    </div>
-                                    <div className={index % 2 === 0 ? 'md:order-2' : 'md:order-1'}>
-                                        {feature.media.type === 'video' ? (
-                                            <video
-                                                src={feature.media.src}
-                                                width={500}
-                                                height={300}
-                                                className="rounded-lg shadow-lg w-full"
-                                                autoPlay
-                                                loop
-                                                muted
-                                                playsInline
-                                            />
-                                        ) : (
-                                            <Image
-                                                src={feature.media.src}
-                                                alt={feature.title}
-                                                width={500}
-                                                height={300}
-                                                className="rounded-lg shadow-lg w-full"
-                                                unoptimized={true}
-                                            />
-                                        )}
-                                    </div>
+                                <h3 className="text-2xl font-bold mb-6">{feature.title}</h3>
+
+                                <div className="mb-8">
+                                    <p className="font-semibold text-gray-500 mb-2">Problem</p>
+                                    <p className="text-gray-700 leading-relaxed mb-6">{feature.problem}</p>
+                                    <p className="font-semibold text-gray-500 mb-2">Solution</p>
+                                    <p className="text-gray-700 leading-relaxed">{feature.solution}</p>
+                                </div>
+
+                                <div className="w-full space-y-6">
+                                    {feature.video && (
+                                        <video
+                                            src={feature.video.src}
+                                            className="rounded-lg shadow-lg w-full"
+                                            controls
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                        />
+                                    )}
+
+                                    {feature.media && (
+                                        <Image
+                                            src={feature.media.src}
+                                            alt={feature.title}
+                                            width={800}
+                                            height={450}
+                                            className="rounded-lg shadow-lg w-full"
+                                            unoptimized={true}
+                                        />
+                                    )}
                                 </div>
 
                                 {feature.codeSnippet && (
-                                    <CodeSnippet code={feature.codeSnippet} language="csharp" />
+                                    <div className="mt-8">
+                                        <CodeSnippet code={feature.codeSnippet} language="csharp" />
+                                    </div>
                                 )}
                             </div>
                         ))}
                     </div>
                 </section>
-
-                {/* <section>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b-2 pb-2">프로젝트 회고</h2>
-                    <div className="bg-gray-50 p-6 rounded-lg">
-                        <h3 className="font-semibold text-lg mb-2">배운 점 (What I Learned)</h3>
-                        <p className="text-gray-700 leading-relaxed">{project.learnings}</p>
-                    </div>
-                </section> */}
             </main>
         </article>
     );

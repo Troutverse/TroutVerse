@@ -14,10 +14,14 @@ export interface Project {
         title: string;
         problem: string;
         solution: string;
-        media: {
-            type: 'image' | 'gif' | 'video';
+        media?: {
+            type: 'image' | 'gif';
             src: string;
         };
+        video?: {
+            type: "video";
+            src: string;
+        }
         codeSnippet?: string;
     }[];
     learnings: string;
@@ -34,9 +38,66 @@ export const projectsData: Project[] = [
         heroVideo: '/GameMainVideo.mp4',
         longDescription: "'VR 공간에서 진짜 야구를 플레이하면 재밌겠다'라는 순수한 호기심이 이 프로젝트의 시작이었습니다. 저는 플레이어가 직접 배트를 휘두르는 타격, 타구를 쫓는 AI 수비수의 움직임, 야구의 기본적인 흐름을 온전히 구현해보기로 했습니다. 이를 위해 각기 다른 물리 법칙과 로직이 필요한 투구, 타격, 수비 시스템을 유기적으로 연결하여 완전한 게임을 만드는 것에 집중했습니다.",
         role: '1인 개발 (기획, 프로그래밍, 구현)',
-        techStack: ['Unity', 'C#', 'VR', 'Meta XR Toolkit',],
+        techStack: ['Unity', 'C#', 'VR', 'Meta XR Toolkit', "Meta Movement SDK"],
         githubUrl: 'https://github.com/Troutverse/Cometria',
         featureDetails: [
+            {
+                title: 'Meta Movement SDK를 활용한 Full Body Tracking 실시간 캐릭터 연동',
+                problem: '나만의 캐릭터를 활용하여 사용자의 미세한 움직임을 가상 환경에 표현하는 방법은?',
+                solution: "VR 야구 시뮬레이션을 기획하면서 가장 중요한 것은 사용자의 움직임과 가상 캐릭터의 동작 간에 최고 수준의 유사성을 확보하는 것이라 생각했습니다. 특히, 정교한 투구와 타격을 구현하기 위해서는 지연 시간이 짧아야 했습니다."
+                            + "이러한 요구사항을 충족시키기 위해 Meta Movement SDK를 사용했습니다. 이 SDK는 Meta Quest 장비의 하드웨어에 통합되어 있어 다른 솔루션 대비 현저히 낮은 지연 시간을 제공합니다. 그 결과, 사용자의 미세한 투구 및 타격 동작까지 실시간으로 정확하게 재현할 수 있었고, 현실과 같은 몰입감 있는 경험을 제공하는 데 성공했습니다.",
+                video: {
+                    type: "video",
+                    src: "FullBodyTrackingVideo.mp4"
+                },
+                media: {
+                    type: 'image',
+                    src: '/FullBodyTrackingImage.png',
+                },
+            },
+            {
+                title: 'Hand Tracking, 제스처 인식을 활용한 캐릭터 선택',
+                problem: 'VR 환경에서 메뉴나 버튼 UI를 사용하지 않고, 플레이어가 직관적이고 몰입감 높은 경험을 통해 캐릭터를 선택하게 하려면 어떻게 해야 할까? 플레이어의 자연스러운 손동작을 게임 속 선택과 직접 연결할 방법은 무엇일까?',
+                solution: "Meta XR Toolkit의 Hand Tracking 기능을 활용하여 UI가 없는(UI-less) 직관적인 캐릭터 선택 시스템을 구현했습니다. 각 손의 '따봉' 제스처를 인식하도록 `Shape Recognizer`를 설정하고, `Active State Selector`를 통해 제스처가 활성화되는 순간을 감지했습니다. 제스처가 감지되면 Unity Event가 `CharacterSelector` 스크립트의 `SelectCharacter` 함수를 호출합니다. 왼손은 'Pitcher', 오른손은 'Batter'로 연결하여, 플레이어는 별도의 UI 조작 없이 간단한 손동작만으로 원하는 캐릭터를 즉시 선택할 수 있습니다. 이를 통해 게임 시작 단계부터 VR 특유의 높은 몰입감을 제공하는 데 성공했습니다.",
+                video: {
+                    type: "video",
+                    src: "CharacterSelectorVideo.mp4"
+                },
+                media: {
+                    type: 'image',
+                    src: '/CharacterSelectorImage.png',
+                },
+                codeSnippet: `
+// CharacterSeletor.cs 
+
+using UnityEngine;
+using System.Collections.Generic;
+
+public class CharacterSelector : MonoBehaviour
+{
+    // 캐릭터 리스트
+    public List<GameObject> characterList;
+
+    public void SelectCharacter(string characterName)
+    {
+        // 선택된 캐릭터 활성화, 나머지 비활성화
+        foreach (GameObject character in characterList)
+        {
+            if (character.name == characterName)
+            {
+                Logger.Log($"Character Selected: {characterName}");
+
+                character.SetActive(true);
+            }
+            else
+            {
+                character.SetActive(false);
+            }
+        }
+    }
+}
+                `
+            },
             {
                 title: 'XR 상호작용 기반의 배트 그립 시스템',
                 problem: '가상현실 속에서 플레이어가 실제처럼 자연스럽게 야구 배트를 손에 쥐고, 의도한 대로 휘두르게 하려면 어떻게 상호작용을 설계해야 할까?',

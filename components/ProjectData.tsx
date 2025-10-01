@@ -48,7 +48,7 @@ export const projectsData: Project[] = [
                             + "이러한 요구사항을 충족시키기 위해 Meta Movement SDK를 사용했습니다. 이 SDK는 Meta Quest 장비의 하드웨어에 통합되어 있어 다른 솔루션 대비 현저히 낮은 지연 시간을 제공합니다. 그 결과, 사용자의 미세한 투구 및 타격 동작까지 실시간으로 정확하게 재현할 수 있었고, 현실과 같은 몰입감 있는 경험을 제공하는 데 성공했습니다.",
                 video: {
                     type: "video",
-                    src: "FullBodyTrackingVideo.mp4"
+                    src: "/FullBodyTrackingVideo.mp4"
                 },
                 media: {
                     type: 'image',
@@ -61,7 +61,7 @@ export const projectsData: Project[] = [
                 solution: "Meta XR Toolkit의 Hand Tracking 기능을 활용하여 UI가 없는(UI-less) 직관적인 캐릭터 선택 시스템을 구현했습니다. 각 손의 '따봉' 제스처를 인식하도록 `Shape Recognizer`를 설정하고, `Active State Selector`를 통해 제스처가 활성화되는 순간을 감지했습니다. 제스처가 감지되면 Unity Event가 `CharacterSelector` 스크립트의 `SelectCharacter` 함수를 호출합니다. 왼손은 'Pitcher', 오른손은 'Batter'로 연결하여, 플레이어는 별도의 UI 조작 없이 간단한 손동작만으로 원하는 캐릭터를 즉시 선택할 수 있습니다. 이를 통해 게임 시작 단계부터 VR 특유의 높은 몰입감을 제공하는 데 성공했습니다.",
                 video: {
                     type: "video",
-                    src: "CharacterSelectorVideo.mp4"
+                    src: "/CharacterSelectorVideo.mp4"
                 },
                 media: {
                     type: 'image',

@@ -1,0 +1,157 @@
+================================================================================
+PlayHub :: 마스터 프로젝트 인수인계 파일 (v1.2)
+
+최종 업데이트: 2025-11-04
+
+문서 목적: 프로젝트의 전반적인 개요와 데이터베이스 설계를 관리합니다.
+
+코드 참조: 실제 소스 코드는 다음 4개의 분리된 파일에서 관리합니다.
+
+app-routes.txt (라우팅 및 페이지)
+
+api-routes.txt (백엔드 API 로직)
+
+components.txt (UI 컴포넌트)
+
+lib.txt (DB 연결, 타입 정의 등)
+
+1. 프로젝트 개요
+
+목표: 'PlayHub' - "어두운 우주 + 글래스모피즘" 디자인 컨셉의 풀스택 웹 게임 커뮤니티 포털.
+
+기술 스택: Next.js (App Router), TypeScript, Vercel (배포), Vercel Postgres (DB), Prisma (ORM), NextAuth.js (인증), bcryptjs (암호화), SWR (클라이언트 데이터 페칭)
+
+완료된 기능:
+
+[완료] 핵심 디자인 시스템 (글로벌 CSS)
+
+[완료] 데이터베이스 설계 (User, Post, Comment, Ranking 테이블)
+
+[완료] 회원가입 API 및 페이지 (DB 연동)
+
+[완료] 로그인/로그아웃 API 및 헤더 UI (NextAuth.js, 세션 관리)
+
+[완료] 게시판 글쓰기 API 및 페이지 (DB 연동)
+
+[완료] 게시판 목록 보기 (DB 연동)
+
+[완료] 게시판 상세 보기 (DB 연동)
+
+[완료] 댓글 API 및 프론트엔드 (DB 연동, SWR)
+
+[완료] 반응속도 테스트 게임 (UI)
+
+[완료] 랭킹(점수) 저장 API (DB 연동)
+
+[완료] 랭킹(점수) 로드 API (DB 연동)
+
+[완료] 홈페이지 (최신 글, 랭킹 DB 연동)
+
+2. 핵심 오류 및 진행 상태
+
+문제 1 (해결): npx prisma db push 시 DATABASE_URL 누락 오류.
+
+조치: 터미널 세션에 환경 변수 직접 주입으로 해결.
+
+문제 2 (해결): 게시글 상세 페이지 params is a Promise 런타임 에러.
+
+조치: Next.js 개발 서버 캐시 문제로, .next 폴더 삭제 및 React.use() 훅 사용으로 해결.
+
+문제 3 (해결): Vercel 빌드 시 login/route.ts is not a module 오류.
+
+조치: 불필요해진 login API 폴더 삭제로 해결.
+
+문제 4 (해결): Vercel 배포 후 로그인 시 'Server error' (500) 발생.
+
+조치: Vercel 대시보드에 NEXTAUTH_SECRET 환경 변수 추가로 해결.
+
+문제 5 (진행중): 랭킹/게시물 등록 후 홈페이지 갱신 안 됨.
+
+원인: Next.js의 데이터 캐시.
+
+해결책: api/posts/route.ts와 api/rankings/route.ts의 POST 함수 내부에 revalidatePath('/') 코드를 추가하여 캐시 수동 갱신. (→ api-routes.txt에 적용 필요)
+
+3. 최종 데이터베이스 스키마 (prisma/schema.prisma)
+
+(이것이 DB의 최종 설계도이며, 'views' 필드가 추가됨)
+
+generator client {
+provider = "prisma-client-js"
+}
+datasource db {
+provider     = "postgresql"
+url          = env("DATABASE_URL")
+relationMode = "prisma"
+}
+model User {
+id            Int         @id @default(autoincrement())
+username      String      @unique
+nickname      String
+password      String
+name          String?
+email         String?     @unique
+emailVerified DateTime?
+image         String?
+accounts      Account[]
+sessions      Session[]
+posts         Post[]
+comments      Comment[]
+rankings      Ranking[]
+createdAt     DateTime    @default(now())
+}
+model Post {
+id        Int       @id @default(autoincrement())
+title     String
+content   String
+createdAt DateTime  @default(now())
+author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+authorId  Int
+comments  Comment[] @relation(onDelete: Cascade)
+views     Int       @default(0) // [업데이트] 조회수 필드 추가됨
+}
+model Comment {
+id        Int      @id @default(autoincrement())
+content   String
+createdAt DateTime @default(now())
+author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+authorId  Int
+post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+postId    Int
+}
+model Ranking {
+id        Int      @id @default(autoincrement())
+score     Int
+createdAt DateTime @default(now())
+gameType  String   // "reaction-test", "typing-game" 등
+user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+userId    Int
+}
+model Account {
+id                 String  @id @default(cuid())
+userId             Int
+type               String
+provider           String
+providerAccountId  String
+refresh_token      String?
+access_token       String?
+expires_at         Int?
+token_type         String?
+scope              String?
+id_token           String?
+session_state      String?
+user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+@@unique([provider, providerAccountId])
+}
+model Session {
+id           String   @id @default(cuid())
+sessionToken String   @unique
+userId       Int
+expires      DateTime
+user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model VerificationToken {
+identifier String
+token      String   @unique
+expires    DateTime
+@@unique([identifier, token])
+}

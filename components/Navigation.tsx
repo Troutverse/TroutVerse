@@ -20,8 +20,8 @@ export default function Navigation({
   totalSlides,
 }: NavigationProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-8">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-8 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none">
+      <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
         {/* 이전 버튼 */}
         <motion.button
           onClick={onPrev}
@@ -30,25 +30,25 @@ export default function Navigation({
             w-16 h-16 rounded-lg border-2 
             flex items-center justify-center
             transition-all duration-300
-            ${canGoPrev 
-              ? 'border-green-400 text-green-400 hover:bg-green-400 hover:text-black cursor-pointer' 
+            ${canGoPrev
+              ? 'border-green-400 text-green-400 hover:bg-green-400 hover:text-black cursor-pointer'
               : 'border-gray-800 text-gray-800 cursor-not-allowed'
             }
           `}
           whileHover={canGoPrev ? { scale: 1.1 } : {}}
           whileTap={canGoPrev ? { scale: 0.95 } : {}}
         >
-          <svg 
-            className="w-8 h-8" 
-            fill="none" 
-            stroke="currentColor" 
+          <svg
+            className="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M15 19l-7-7 7-7" 
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
             />
           </svg>
         </motion.button>
@@ -61,8 +61,8 @@ export default function Navigation({
                 key={index}
                 className={`
                   h-2 transition-all duration-300
-                  ${index === currentSlide 
-                    ? 'w-8 bg-green-400' 
+                  ${index === currentSlide
+                    ? 'w-8 bg-green-400'
                     : 'w-2 bg-gray-700'
                   }
                   rounded-full
@@ -83,25 +83,25 @@ export default function Navigation({
             w-16 h-16 rounded-lg border-2 
             flex items-center justify-center
             transition-all duration-300
-            ${canGoNext 
-              ? 'border-green-400 text-green-400 hover:bg-green-400 hover:text-black cursor-pointer' 
+            ${canGoNext
+              ? 'border-green-400 text-green-400 hover:bg-green-400 hover:text-black cursor-pointer'
               : 'border-gray-800 text-gray-800 cursor-not-allowed'
             }
           `}
           whileHover={canGoNext ? { scale: 1.1 } : {}}
           whileTap={canGoNext ? { scale: 0.95 } : {}}
         >
-          <svg 
-            className="w-8 h-8" 
-            fill="none" 
-            stroke="currentColor" 
+          <svg
+            className="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M9 5l7 7-7 7" 
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
             />
           </svg>
         </motion.button>

@@ -5,86 +5,110 @@ import ThreeScene from '@/components/ThreeScene';
 
 export default function Slide01Hero() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative">
-      {/* 3D Scene - 배경 */}
-      <div className="absolute inset-0 opacity-30">
+    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
+      {/* 3D Scene - 배경 (더 선명하게) */}
+      <div className="absolute inset-0 opacity-50">
         <ThreeScene type="knife" />
       </div>
 
+      {/* 그라데이션 오버레이 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70" />
+
       {/* 콘텐츠 */}
-      <div className="relative z-10 flex flex-col items-center gap-8">
-        <motion.h1
-          className="text-8xl font-bold text-green-400 font-mono tracking-wider"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          체크포인트
-        </motion.h1>
-
-        <motion.p
-          className="text-2xl text-green-300 font-mono"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        >
-          2025년 Mesh Slicing 활동을 되돌아보세요
-        </motion.p>
-
+      <div className="relative z-10 flex flex-col items-center gap-8 px-4">
+        {/* 상단 태그 */}
         <motion.div
-          className="flex gap-6 mt-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+          className="px-4 py-2 border border-green-400/30 rounded-full bg-black/30 backdrop-blur-sm"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="w-12 h-12 border-2 border-green-400 rounded-lg flex items-center justify-center">
-            <svg className="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-              <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"/>
-            </svg>
-          </div>
-
-          <div className="w-12 h-12 border-2 border-green-400 rounded-lg flex items-center justify-center">
-            <div className="w-6 h-6 grid grid-cols-2 gap-1">
-              <div className="bg-green-400"></div>
-              <div className="bg-green-400"></div>
-              <div className="bg-green-400"></div>
-              <div className="bg-green-400 opacity-50"></div>
-            </div>
-          </div>
-
-          <div className="w-12 h-12 border-2 border-green-400 rounded-lg flex items-center justify-center">
-            <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
+          <span className="text-green-400 font-mono text-sm">Unity VR</span>
         </motion.div>
 
-        <motion.button
-          className="mt-12 px-12 py-4 border-2 border-green-400 text-green-400 
-                     font-mono text-xl rounded-lg hover:bg-green-400 hover:text-black
-                     transition-all duration-300 flex items-center gap-3"
-          initial={{ opacity: 0, scale: 0.8 }}
+        {/* 메인 타이틀 */}
+        <motion.h1
+          className="text-7xl md:text-9xl font-bold text-green-400 font-mono tracking-wider text-center"
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-          </svg>
-          시작
-        </motion.button>
+          Mesh Slicing
+        </motion.h1>
 
-        <motion.p
-          className="text-sm text-green-700 font-mono mt-8"
+        {/* 서브 타이틀 with 타이핑 효과 느낌 */}
+        <motion.div
+          className="text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
         >
-          체크포인트는 보면 볼 수 없어요(공유하기로 인한 장우 제외). 
-          <span className="underline cursor-pointer">자세히 알아보세요</span>.
-        </motion.p>
+          <p className="text-xl md:text-2xl text-green-300 font-mono">
+            Real-time 3D Mesh Cutting Algorithm
+          </p>
+          <p className="text-lg text-green-500/70 font-mono mt-2">
+            VR 수술 시뮬레이션을 위한 동적 메쉬 절단 시스템
+          </p>
+        </motion.div>
+
+        {/* 기술 아이콘 (glassmorphism 스타일) */}
+        <motion.div
+          className="flex gap-4 mt-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
+          {/* Unity */}
+          <motion.div
+            className="group w-16 h-16 border border-green-400/30 rounded-xl flex flex-col items-center justify-center
+                       bg-black/20 backdrop-blur-md hover:bg-green-400/10 transition-all cursor-pointer"
+            whileHover={{ scale: 1.1, borderColor: 'rgba(74, 222, 128, 0.6)' }}
+          >
+            <svg className="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L19.82 8 12 11.82 4.18 8 12 4.18zM4 9.48l7 3.5v7.84l-7-3.5V9.48zm16 0v7.84l-7 3.5v-7.84l7-3.5z" />
+            </svg>
+            <span className="text-xs text-green-400 mt-1 font-mono opacity-0 group-hover:opacity-100 transition-opacity">Unity</span>
+          </motion.div>
+
+          {/* C# */}
+          <motion.div
+            className="group w-16 h-16 border border-green-400/30 rounded-xl flex flex-col items-center justify-center
+                       bg-black/20 backdrop-blur-md hover:bg-green-400/10 transition-all cursor-pointer"
+            whileHover={{ scale: 1.1, borderColor: 'rgba(74, 222, 128, 0.6)' }}
+          >
+            <div className="w-7 h-7 flex items-center justify-center">
+              <span className="text-2xl text-green-400 font-bold">C#</span>
+            </div>
+            <span className="text-xs text-green-400 mt-1 font-mono opacity-0 group-hover:opacity-100 transition-opacity">C#</span>
+          </motion.div>
+
+          {/* Meta Quest */}
+          <motion.div
+            className="group w-16 h-16 border border-green-400/30 rounded-xl flex flex-col items-center justify-center
+                       bg-black/20 backdrop-blur-md hover:bg-green-400/10 transition-all cursor-pointer"
+            whileHover={{ scale: 1.1, borderColor: 'rgba(74, 222, 128, 0.6)' }}
+          >
+            <svg className="w-7 h-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            </svg>
+            <span className="text-xs text-green-400 mt-1 font-mono opacity-0 group-hover:opacity-100 transition-opacity">VR</span>
+          </motion.div>
+        </motion.div>
+
+
+        {/* Stats 카드 (선택적) */}
+        <motion.div
+          className="absolute bottom-20 right-8 flex gap-4"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.3, duration: 0.6 }}
+        >
+          <div className="px-4 py-2 bg-black/40 backdrop-blur-md border border-green-400/20 rounded-lg">
+            <p className="text-green-400 font-mono text-xs">개발 기간</p>
+            <p className="text-green-300 font-mono text-lg font-bold text-center">3주</p>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -4,14 +4,14 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Slide01Hero from './sliders/Slide01Hero';
 import Slide02Stats from './sliders/Slide02Stats';
-import Slide03Problem1 from './sliders/Slide03Problem1';
-import Slide04Attempt1 from './sliders/Slide04Attempt1';
-import Slide05Attempt2 from './sliders/Slide05Attempt2';
-import Slide06Attempt3 from './sliders/Slide06Attempt3';
-import Slide07Attempt4 from './sliders/Slide07Attempt4';
-import Slide08Breakthrough from './sliders/Slide08Breakthrough';
-import Slide09Solution from './sliders/Slide09Solution';
-import Slide10Results from './sliders/Slide10Results';
+import Slide03Problem1 from './sliders/Slide03Attempt1';
+import Slide04Attempt1 from './sliders/Slide04Attempt2';
+import Slide05Attempt2 from './sliders/Slide05Attempt3';
+import Slide06Attempt3 from './sliders/Slide06Attempt4';
+import Slide07Attempt4 from './sliders/Slide07Breakthrough';
+import Slide08Breakthrough from './sliders/Slide08Solution';
+import Slide09Solution from './sliders/Slide09Performance';
+import Slide10Results from './sliders/Slide10Conclusion';
 import Navigation from '../../../components/Navigation';
 import RetroBackground from '../../../components/RetroBackground';
 
@@ -47,7 +47,14 @@ export default function MeshSlicingPage() {
     }
   };
 
-  // 키보드 네비게이션
+  useEffect(() => {
+    // Navbar 높이만큼 아래로 스크롤 (보통 64px~80px)
+    window.scrollTo({
+      top: 80, // Navbar 높이에 맞게 조정
+      behavior: 'smooth' // 부드럽게 스크롤
+    });
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') nextSlide();

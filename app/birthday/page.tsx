@@ -4,24 +4,24 @@ import { useEffect, useState } from 'react';
 
 export default function BirthdayPage() {
   const [currentStage, setCurrentStage] = useState(0);
-  const [stagesCompleted, setStagesCompleted] = useState([true, false, false, false, false, false, false]);
+  const [stagesCompleted, setStagesCompleted] = useState([true, false, false, false, false, false]);
   const [ingredientsCollected, setIngredientsCollected] = useState(0);
   const [candlesPlaced, setCandlesPlaced] = useState(0);
 
   const channelNames = [
-    '초대장', '재료 모으기', '촛불 꽂기', '촛불 끄기', '선물 찾기', '추억 타임라인', '피날레'
+    '초대장', '재료 모으기', '촛불 꽂기', '촛불 끄기', '선물 찾기', '피날레'
   ];
 
   const channelTopics = [
     '생일 파티에 초대합니다!', '케이크 재료를 모아주세요', '케이크에 촛불을 꽂아주세요',
-    '소원을 빌고 촛불을 끄세요', '특별한 선물을 찾아주세요', '우리의 소중한 추억들', '생일 축하합니다! 🎉'
+    '소원을 빌고 촛불을 끄세요', '특별한 선물을 찾아주세요', '생일 축하합니다! 🎉'
   ];
 
   const [giftOpened, setGiftOpened] = useState(false);
   const [showHearts, setShowHearts] = useState(false);
 
   useEffect(() => {
-    if (currentStage === 6) {
+    if (currentStage === 5) {
       // 선물 상자 오픈 애니메이션 시작
       setTimeout(() => setGiftOpened(true), 500);
       // 하트 폭발
@@ -90,16 +90,9 @@ export default function BirthdayPage() {
     }
   };
 
-  const goToFinale = () => {
-    const newCompleted = [...stagesCompleted];
-    newCompleted[5] = true;
-    setStagesCompleted(newCompleted);
-    setCurrentStage(6);
-  };
-
   const startFinaleEffects = () => {
     const newCompleted = [...stagesCompleted];
-    newCompleted[6] = true;
+    newCompleted[5] = true;
     setStagesCompleted(newCompleted);
 
     // 하트 비 효과
@@ -131,9 +124,9 @@ export default function BirthdayPage() {
     heart.style.animationDuration = 3 + Math.random() * 2 + 's';
     heart.style.fontSize = (20 + Math.random() * 20) + 'px';
     
-    const stage6 = document.querySelector('#stage6');
-    if (stage6) {
-      stage6.appendChild(heart);
+    const stage5 = document.querySelector('#stage5');
+    if (stage5) {
+      stage5.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }
   };
@@ -145,8 +138,8 @@ export default function BirthdayPage() {
     const x = Math.random() * window.innerWidth;
     const y = Math.random() * (window.innerHeight * 0.6);
     
-    const stage6 = document.querySelector('#stage6');
-    if (!stage6) return;
+    const stage5 = document.querySelector('#stage5');
+    if (!stage5) return;
     
     for (let i = 0; i < 30; i++) {
       const particle = document.createElement('div');
@@ -160,7 +153,7 @@ export default function BirthdayPage() {
       particle.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
       particle.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
       
-      stage6.appendChild(particle);
+      stage5.appendChild(particle);
       setTimeout(() => particle.remove(), 1000);
     }
   };
@@ -418,7 +411,7 @@ export default function BirthdayPage() {
         .ingredients-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-          gap: 20px;
+          gap: 5px;
           max-width: 600px;
           width: 100%;
         }
@@ -564,51 +557,6 @@ export default function BirthdayPage() {
           0%, 100% { transform: translateX(0); }
           25% { transform: translateX(-10px); }
           75% { transform: translateX(10px); }
-        }
-
-        .timeline-container {
-          max-width: 800px;
-          width: 100%;
-          overflow-y: auto;
-          max-height: calc(100vh - 200px);
-        }
-
-        .timeline-item {
-          background: #2f3136;
-          border-left: 4px solid #5865f2;
-          padding: 30px;
-          margin: 20px 0;
-          border-radius: 8px;
-          transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover {
-          border-left-color: #7289da;
-          box-shadow: 0 5px 20px rgba(88, 101, 242, 0.3);
-          transform: translateX(10px);
-        }
-
-        .timeline-item h3 {
-          font-size: 28px;
-          margin-bottom: 15px;
-          color: #fff;
-        }
-
-        .timeline-item p {
-          font-size: 18px;
-          line-height: 1.8;
-          color: #dcddde;
-          margin-bottom: 20px;
-        }
-
-        .memory-photo {
-          background: #202225;
-          border: 2px solid #5865f2;
-          border-radius: 8px;
-          padding: 60px 40px;
-          text-align: center;
-          color: #96989d;
-          font-size: 16px;
         }
 
         .finale-content {
@@ -875,7 +823,7 @@ export default function BirthdayPage() {
                 onClick={() => goToStage(index)}
               >
                 <span className="channel-icon">
-                  {['📩', '🥚', '🕯️', '💨', '🎁', '💝', '🎉'][index]}
+                  {['📩', '🥚', '🕯️', '💨', '🎁', '🎉'][index]}
                 </span>
                 <span>{name}</span>
               </div>
@@ -898,7 +846,7 @@ export default function BirthdayPage() {
                 <p>
                   세상에서 가장 특별한 당신을 위한<br/>
                   특별한 생일 파티에 초대합니다! 🎉<br/><br/>
-                  6개의 미션을 완료하고<br/>
+                  5개의 미션을 완료하고<br/>
                   최고의 생일 선물을 받아가세요! 💝
                 </p>
                 <button className="retro-button" onClick={startParty}>
@@ -969,7 +917,6 @@ export default function BirthdayPage() {
                 </div>
               </div>
               
-              <p className="blow-instruction">⬇️ 아래 버튼을 클릭하세요 ⬇️</p>
               <button className="retro-button" onClick={blowCandles}>💨 후~ 불기!</button>
             </div>
 
@@ -991,59 +938,8 @@ export default function BirthdayPage() {
               </div>
             </div>
 
-            {/* Stage 5: 추억 타임라인 */}
-            <div className={`stage-content ${currentStage === 5 ? 'active' : ''}`}>
-              <div className="timeline-container">
-                <h1 className="stage-title-main">💝 우리의 추억</h1>
-                
-                <div className="timeline-item">
-                  <h3>✨ 첫 만남</h3>
-                  <p>
-                    처음 만난 그 순간부터<br/>
-                    당신은 나에게 특별한 사람이었어요.<br/>
-                    그때의 떨림을 아직도 기억해요.
-                  </p>
-                  <div className="memory-photo">📸 사진 자리 1</div>
-                </div>
-                
-                <div className="timeline-item">
-                  <h3>💖 함께한 순간들</h3>
-                  <p>
-                    우리가 함께 웃고 울었던 모든 순간들이<br/>
-                    나에게는 가장 소중한 보물이에요.<br/>
-                    당신과 함께라서 행복했어요.
-                  </p>
-                  <div className="memory-photo">📸 사진 자리 2</div>
-                </div>
-                
-                <div className="timeline-item">
-                  <h3>🌟 특별한 추억</h3>
-                  <p>
-                    당신과 함께한 모든 날들이<br/>
-                    나의 인생에서 가장 빛나는 순간들이에요.<br/>
-                    영원히 기억하고 싶어요.
-                  </p>
-                  <div className="memory-photo">📸 사진 자리 3</div>
-                </div>
-                
-                <div className="timeline-item">
-                  <h3>🎈 앞으로의 이야기</h3>
-                  <p>
-                    앞으로도 우리 함께<br/>
-                    더 많은 행복한 추억을 만들어가요.<br/>
-                    영원히 당신 곁에 있을게요.
-                  </p>
-                  <div className="memory-photo">📸 사진 자리 4</div>
-                </div>
-                
-                <button className="retro-button" onClick={goToFinale} style={{display: 'block', margin: '40px auto'}}>
-                  다음으로 →
-                </button>
-              </div>
-            </div>
-
-            {/* Stage 6: 피날레 */}
-            <div id="stage6" className={`stage-content ${currentStage === 6 ? 'active' : ''}`} style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
+            {/* Stage 5: 피날레 */}
+            <div id="stage5" className={`stage-content ${currentStage === 5 ? 'active' : ''}`} style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
               {!giftOpened ? (
                 <div className="gift-container">
                   <div 
@@ -1063,7 +959,7 @@ export default function BirthdayPage() {
                     marginTop: '20px',
                     animation: 'pulse 2s infinite'
                   }}>
-                    🎁 선물을 클릭하세요!
+                    🎁
                   </p>
                 </div>
               ) : (
@@ -1095,13 +991,13 @@ export default function BirthdayPage() {
                     animationDelay: '1s',
                     animationFillMode: 'backwards'
                   }}>
-                    <h1>🎉 생일 축하해요! 🎉</h1>
+                    <h1>🎉 생일 축하해! 🎉</h1>
                     <p>
-                      세상에서 가장 특별한 당신에게<br/>
-                      가장 행복한 생일을 보내요!<br/>
-                      언제나 당신 곁에 있을게요 💝
+                      세상에서 가장 특별한 윤지에게<br/>
+                      가장 행복한 생일을 보내기를 바래!<br/>
+                      언제나 윤지 곁에 있을게 💝
                     </p>
-                    <strong>사랑해요! ❤️</strong>
+                    <strong>사랑해! ❤️</strong>
                   </div>
                 </>
               )}

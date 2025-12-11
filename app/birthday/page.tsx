@@ -22,9 +22,7 @@ export default function BirthdayPage() {
 
   useEffect(() => {
     if (currentStage === 5) {
-      // 선물 상자 오픈 애니메이션 시작
       setTimeout(() => setGiftOpened(true), 500);
-      // 하트 폭발
       setTimeout(() => {
         setShowHearts(true);
         startFinaleEffects();
@@ -95,17 +93,14 @@ export default function BirthdayPage() {
     newCompleted[5] = true;
     setStagesCompleted(newCompleted);
 
-    // 하트 비 효과
     const heartInterval = setInterval(() => {
       createHeart();
     }, 200);
 
-    // 폭죽 효과
     const fireworkInterval = setInterval(() => {
       createFirework();
     }, 800);
 
-    // 10초 후 간격 늘리기
     setTimeout(() => {
       clearInterval(heartInterval);
       clearInterval(fireworkInterval);
@@ -311,7 +306,8 @@ export default function BirthdayPage() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 40px;
+          padding: 40px 20px;
+          overflow-y: auto;
         }
 
         .stage-content.active {
@@ -363,6 +359,7 @@ export default function BirthdayPage() {
           text-align: center;
           box-shadow: 0 20px 60px rgba(0,0,0,0.5);
           max-width: 500px;
+          width: 100%;
           border: 2px solid #5865f2;
           animation: floatInvite 3s infinite ease-in-out;
         }
@@ -386,7 +383,7 @@ export default function BirthdayPage() {
         }
 
         .progress-container {
-          width: 80%;
+          width: 90%;
           max-width: 500px;
           height: 30px;
           background: #202225;
@@ -411,9 +408,10 @@ export default function BirthdayPage() {
         .ingredients-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-          gap: 5px;
+          gap: 15px;
           max-width: 600px;
           width: 100%;
+          padding: 0 10px;
         }
 
         .ingredient-item {
@@ -447,6 +445,9 @@ export default function BirthdayPage() {
         .cake-display {
           margin: 40px 0;
           position: relative;
+          width: 100%;
+          display: flex;
+          justify-content: center;
         }
 
         .discord-cake {
@@ -529,6 +530,7 @@ export default function BirthdayPage() {
           gap: 20px;
           max-width: 600px;
           width: 100%;
+          padding: 0 10px;
         }
 
         .gift-box {
@@ -562,7 +564,8 @@ export default function BirthdayPage() {
         .finale-content {
           text-align: center;
           max-width: 700px;
-          padding: 40px;
+          width: 100%;
+          padding: 40px 20px;
           background: rgba(47, 49, 54, 0.9);
           border-radius: 8px;
           border: 3px solid #5865f2;
@@ -601,7 +604,6 @@ export default function BirthdayPage() {
           50% { transform: scale(1.1); }
         }
 
-        /* 선물 상자 애니메이션 */
         .gift-container {
           position: relative;
           width: 200px;
@@ -674,7 +676,6 @@ export default function BirthdayPage() {
           filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
         }
 
-        /* 하트 폭발 애니메이션 */
         .heart-explosion {
           position: absolute;
           top: 50%;
@@ -704,7 +705,6 @@ export default function BirthdayPage() {
           }
         }
 
-        /* 하트 비 효과 */
         .heart-rain-effect {
           position: absolute;
           animation: heartFall 5s linear forwards;
@@ -725,7 +725,6 @@ export default function BirthdayPage() {
           }
         }
 
-        /* 폭죽 파티클 */
         .firework-particle {
           position: absolute;
           width: 8px;
@@ -748,7 +747,6 @@ export default function BirthdayPage() {
           }
         }
 
-        /* 반짝임 효과 */
         .sparkle-effect {
           position: absolute;
           pointer-events: none;
@@ -777,9 +775,11 @@ export default function BirthdayPage() {
           }
         }
 
+        /* 모바일 반응형 */
         @media (max-width: 768px) {
           .sidebar {
-            width: 80px;
+            width: 70px;
+            min-width: 70px;
           }
 
           .channel-item span:not(.channel-icon) {
@@ -790,16 +790,198 @@ export default function BirthdayPage() {
             display: none;
           }
 
+          .server-icon {
+            width: 35px;
+            height: 35px;
+            font-size: 18px;
+          }
+
+          .channel-category {
+            padding: 15px 5px 5px 5px;
+            font-size: 10px;
+            text-align: center;
+          }
+
+          .channel-list {
+            padding: 0 5px;
+          }
+
+          .channel-item {
+            justify-content: center;
+            padding: 10px 5px;
+          }
+
+          .channel-icon {
+            font-size: 24px;
+            width: 100%;
+          }
+
+          .channel-header {
+            padding: 0 15px;
+            height: 50px;
+          }
+
+          .channel-name {
+            font-size: 16px;
+          }
+
+          .channel-topic {
+            display: none;
+          }
+
+          .stage-content {
+            padding: 20px 15px;
+          }
+
           .stage-title-main {
+            font-size: 28px;
+            margin-bottom: 20px;
+          }
+
+          .stage-subtitle {
+            font-size: 16px;
+            margin-bottom: 30px;
+          }
+
+          .invitation-card {
+            padding: 40px 25px;
+          }
+
+          .invitation-card h1 {
             font-size: 32px;
+          }
+
+          .invitation-card p {
+            font-size: 16px;
           }
 
           .ingredients-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+
+          .ingredient-item {
+            padding: 20px;
+            font-size: 48px;
+          }
+
+          .discord-cake {
+            width: 250px;
+            height: 80px;
+          }
+
+          .candle-slot {
+            width: 50px;
+            height: 50px;
+            font-size: 32px;
+            top: -50px;
+          }
+
+          .candle-slot:nth-child(2) { left: 20px; }
+          .candle-slot:nth-child(3) { left: 100px; }
+          .candle-slot:nth-child(4) { left: 180px; }
+
+          .blow-instruction {
+            font-size: 18px;
           }
 
           .gifts-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+          }
+
+          .gift-box {
+            padding: 30px;
+            font-size: 48px;
+          }
+
+          .gift-container {
+            width: 150px;
+            height: 150px;
+          }
+
+          .gift-box-finale {
+            width: 150px;
+            height: 120px;
+          }
+
+          .gift-lid {
+            width: 165px;
+            height: 50px;
+            left: -7px;
+          }
+
+          .gift-bow {
+            font-size: 45px;
+          }
+
+          .finale-content h1 {
+            font-size: 36px;
+          }
+
+          .finale-content p {
+            font-size: 18px;
+          }
+
+          .finale-content strong {
+            font-size: 36px;
+          }
+
+          .retro-button {
+            padding: 10px 25px;
+            font-size: 14px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .stage-title-main {
+            font-size: 24px;
+          }
+
+          .invitation-card h1 {
+            font-size: 28px;
+          }
+
+          .invitation-card p {
+            font-size: 14px;
+          }
+
+          .ingredient-item {
+            font-size: 40px;
+            padding: 15px;
+          }
+
+          .discord-cake {
+            width: 200px;
+            height: 70px;
+          }
+
+          .candle-slot {
+            width: 40px;
+            height: 40px;
+            font-size: 28px;
+            top: -45px;
+          }
+
+          .candle-slot:nth-child(2) { left: 15px; }
+          .candle-slot:nth-child(3) { left: 80px; }
+          .candle-slot:nth-child(4) { left: 145px; }
+
+          .gift-box {
+            padding: 25px;
+            font-size: 40px;
+          }
+
+          .finale-content h1 {
+            font-size: 28px;
+          }
+
+          .finale-content p {
+            font-size: 16px;
+          }
+
+          .finale-content strong {
+            font-size: 28px;
           }
         }
       `}</style>
@@ -811,7 +993,7 @@ export default function BirthdayPage() {
             <span>Birthday Quest</span>
           </div>
           
-          <div className="channel-category">🎮 GAME STAGES</div>
+          <div className="channel-category">🎮 STAGES</div>
           
           <div className="channel-list">
             {channelNames.map((name, index) => (
@@ -917,6 +1099,7 @@ export default function BirthdayPage() {
                 </div>
               </div>
               
+              <p className="blow-instruction">⬇️ 아래 버튼을 클릭하세요 ⬇️</p>
               <button className="retro-button" onClick={blowCandles}>💨 후~ 불기!</button>
             </div>
 
@@ -959,7 +1142,7 @@ export default function BirthdayPage() {
                     marginTop: '20px',
                     animation: 'pulse 2s infinite'
                   }}>
-                    🎁
+                    🎁 선물을 클릭하세요!
                   </p>
                 </div>
               ) : (
@@ -991,13 +1174,13 @@ export default function BirthdayPage() {
                     animationDelay: '1s',
                     animationFillMode: 'backwards'
                   }}>
-                    <h1>🎉 생일 축하해! 🎉</h1>
+                    <h1>🎉 생일 축하해요! 🎉</h1>
                     <p>
-                      세상에서 가장 특별한 윤지에게<br/>
-                      가장 행복한 생일을 보내기를 바래!<br/>
-                      언제나 윤지 곁에 있을게 💝
+                      세상에서 가장 특별한 당신에게<br/>
+                      가장 행복한 생일을 보내요!<br/>
+                      언제나 당신 곁에 있을게요 💝
                     </p>
-                    <strong>사랑해! ❤️</strong>
+                    <strong>사랑해요! ❤️</strong>
                   </div>
                 </>
               )}

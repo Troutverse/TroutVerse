@@ -1026,7 +1026,7 @@ export default function BirthdayPage() {
               <div className="invitation-card">
                 <h1>🎂 생일 축하 초대장</h1>
                 <p>
-                  세상에서 가장 특별한 당신을 위한<br/>
+                  세상에서 가장 특별한 윤지을 위한<br/>
                   특별한 생일 파티에 초대합니다! 🎉<br/><br/>
                   5개의 미션을 완료하고<br/>
                   최고의 생일 선물을 받아가세요! 💝
@@ -1099,14 +1099,13 @@ export default function BirthdayPage() {
                 </div>
               </div>
               
-              <p className="blow-instruction">⬇️ 아래 버튼을 클릭하세요 ⬇️</p>
               <button className="retro-button" onClick={blowCandles}>💨 후~ 불기!</button>
             </div>
 
             {/* Stage 4: 선물 찾기 */}
             <div className={`stage-content ${currentStage === 4 ? 'active' : ''}`}>
               <h1 className="stage-title-main">🎁 진짜 선물 찾기</h1>
-              <p className="stage-subtitle">특별한 선물이 하나 숨어있어요!</p>
+              <p className="stage-subtitle">특별한 선물이 하나 숨어있어!</p>
               
               <div className="gifts-grid">
                 {['🎁', '📦', '🎀', '🎁', '📦', '💝'].map((gift, index) => (
@@ -1142,7 +1141,7 @@ export default function BirthdayPage() {
                     marginTop: '20px',
                     animation: 'pulse 2s infinite'
                   }}>
-                    🎁 선물을 클릭하세요!
+                    🎁
                   </p>
                 </div>
               ) : (
@@ -1174,13 +1173,13 @@ export default function BirthdayPage() {
                     animationDelay: '1s',
                     animationFillMode: 'backwards'
                   }}>
-                    <h1>🎉 생일 축하해요! 🎉</h1>
+                    <h1>🎉 생일 축하해! 🎉</h1>
                     <p>
-                      세상에서 가장 특별한 당신에게<br/>
-                      가장 행복한 생일을 보내요!<br/>
-                      언제나 당신 곁에 있을게요 💝
+                      세상에서 가장 특별한 윤지에게<br/>
+                      가장 행복한 생일을 보내길!<br/>
+                      언제나 윤지 곁에 있을게 💝
                     </p>
-                    <strong>사랑해요! ❤️</strong>
+                    <strong>사랑해! ❤️</strong>
                   </div>
                 </>
               )}

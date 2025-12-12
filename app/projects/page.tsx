@@ -19,7 +19,7 @@ export default function ProjectsPage() {
     title: 'Mesh Creation',
     slug: 'mesh-creation',
     date: '2024.09 - 2024.11',
-    description: '절단면 Cap Mesh 생성 알고리즘',
+    description: 'Mesh 생성 알고리즘',
     thumbnail: '/mesh-creation-thumb.jpg',
     type: '3d-animation' as const
   };

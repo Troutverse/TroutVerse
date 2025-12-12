@@ -120,15 +120,19 @@ export default function Slide05Attempt3() {
           <p className="text-blue-400 font-mono text-xs mb-3">구현 코드</p>
           <pre className="bg-black/50 p-3 rounded text-[10px] overflow-x-auto">
             <code className="text-gray-300 font-mono">
-{`Vector3 center = Vector3.zero;
-foreach (var v in boundaryLoop)
-    center += v;
-center /= boundaryLoop.Count;
+              {
+              `Vector3 center = Vector3.zero;
+              foreach (var v in boundaryLoop)
+                  center += v;
+              
+              center /= boundaryLoop.Count;
 
-for (int i = 0; i < boundaryLoop.Count; i++) {
-    int next = (i + 1) % boundaryLoop.Count;
-    AddTriangle(center, boundaryLoop[i], boundaryLoop[next]);
-}`}
+              for (int i = 0; i < boundaryLoop.Count; i++) 
+              {
+                  int next = (i + 1) % boundaryLoop.Count;
+                  AddTriangle(center, boundaryLoop[i], boundaryLoop[next]);
+              }`
+              }
             </code>
           </pre>
         </motion.div>
@@ -207,7 +211,7 @@ for (int i = 0; i < boundaryLoop.Count; i++) {
 // Fan Triangulation 애니메이션
 function FanTriangulationAnimation() {
   const vertexCount = 10;
-  
+
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       {/* 중심점 */}
@@ -227,7 +231,7 @@ function FanTriangulationAnimation() {
       {[...Array(vertexCount)].map((_, i) => {
         const angle = (i * Math.PI * 2) / vertexCount;
         const radius = 70;
-        
+
         return (
           <motion.div
             key={`vertex-${i}`}
@@ -253,7 +257,7 @@ function FanTriangulationAnimation() {
       {[...Array(vertexCount)].map((_, i) => {
         const angle = (i * Math.PI * 2) / vertexCount;
         const radius = 70;
-        
+
         return (
           <motion.div
             key={`line-${i}`}
@@ -284,7 +288,7 @@ function FanTriangulationAnimation() {
         const angle1 = (i * Math.PI * 2) / vertexCount;
         const angle2 = ((i + 1) * Math.PI * 2) / vertexCount;
         const radius = 70;
-        
+
         return (
           <motion.div
             key={`tri-${i}`}

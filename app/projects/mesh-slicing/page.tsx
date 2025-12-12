@@ -10,7 +10,6 @@ import Slide05Attempt2 from './sliders/Slide05Attempt3';
 import Slide06Attempt3 from './sliders/Slide06Attempt4';
 import Slide07Attempt4 from './sliders/Slide07Breakthrough';
 import Slide08Breakthrough from './sliders/Slide08Solution';
-import Slide09Solution from './sliders/Slide09Performance';
 import Slide10Results from './sliders/Slide10Conclusion';
 import Navigation from '../../../components/Navigation';
 import RetroBackground from '../../../components/RetroBackground';
@@ -25,7 +24,6 @@ const slides = [
   Slide06Attempt3,
   Slide07Attempt4,
   Slide08Breakthrough,
-  Slide09Solution,
   Slide10Results,
 ];
 

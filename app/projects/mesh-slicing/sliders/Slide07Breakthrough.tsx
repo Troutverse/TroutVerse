@@ -134,34 +134,6 @@ export default function Slide07Breakthrough() {
           </div>
         </motion.div>
 
-        {/* 코드 스니펫 */}
-        <motion.div
-          className="p-4 bg-gray-900/80 border border-blue-500/30 rounded-xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-        >
-          <p className="text-blue-400 font-mono text-xs mb-3">핵심 코드</p>
-          <pre className="bg-black/50 p-3 rounded text-[10px] overflow-x-auto">
-            <code className="text-gray-300 font-mono">
-{`Queue<int> queue = new Queue<int>();
-queue.Enqueue(seedTriangle);
-
-while (queue.Count > 0) {
-    int current = queue.Dequeue();
-    group.Add(current);
-    
-    foreach (int neighbor in GetNeighbors(current)) {
-        if (!visited[neighbor] && 
-            !isCrossed[neighbor]) {
-            queue.Enqueue(neighbor);
-            visited[neighbor] = true;
-        }
-    }
-}`}
-            </code>
-          </pre>
-        </motion.div>
 
         {/* 획기적 결과 */}
         <motion.div
@@ -202,29 +174,6 @@ while (queue.Count > 0) {
                 <li>• 메쉬: <span className="text-cyan-400">2,000 삼각형</span></li>
                 <li>• 처리 시간: <span className="text-cyan-400">~3ms</span></li>
                 <li>• 정확도: <span className="text-green-400 font-bold">100%</span></li>
-                <li>• FPS: <span className="text-yellow-400">60fps</span> (목표의 2/3)</li>
-              </ul>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* 남은 최적화 */}
-        <motion.div
-          className="p-4 bg-gray-900/50 backdrop-blur-sm border border-orange-700/50 rounded-xl"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-        >
-          <div className="flex items-start gap-3">
-            <div className="text-2xl">⚡</div>
-            <div>
-              <h3 className="text-base font-bold text-orange-400 font-mono mb-2">
-                추가 개선 필요
-              </h3>
-              <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
-                <li>• 아직 60fps (목표 <span className="text-orange-400">90fps</span>)</li>
-                <li>• Job System 도입 검토</li>
-                <li>• 추가 최적화 필요</li>
               </ul>
             </div>
           </div>

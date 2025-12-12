@@ -1,19 +1,23 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export default function Slide08Solution() {
   return (
     <div className="w-full h-full flex items-center justify-center px-20 gap-12 py-16 pb-32">
-      {/* 왼쪽: 시스템 아키텍처 다이어그램 */}
-      <div className="w-[45%] h-full flex items-center justify-center">
-        <div className="relative w-full h-[85%]">
-          <SystemArchitectureDiagram />
+      {/* 왼쪽: 3단계 프로세스 애니메이션 */}
+      <div className="w-[55%] h-full flex items-center justify-center">
+        <div className="relative w-full h-[85%] border-2 border-cyan-500/30 rounded-2xl bg-cyan-950/20 overflow-hidden">
+          <SliceProcessAnimation />
+          
+          {/* 단계 표시기 */}
+          <StageIndicator />
         </div>
       </div>
 
-      {/* 오른쪽: 설명 */}
-      <div className="w-[55%] h-full flex flex-col gap-4 overflow-y-auto pr-2 pb-8 custom-scrollbar">
+      {/* 오른쪽: 솔루션 설명 */}
+      <div className="w-[45%] h-full flex flex-col gap-4 overflow-y-auto pr-2 pb-8 custom-scrollbar">
         <style jsx>{`
           .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -40,168 +44,132 @@ export default function Slide08Solution() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-5xl font-bold text-cyan-400 font-mono mb-3">
-            Final Solution
+            The Solution
           </h2>
           <p className="text-xl text-cyan-300 font-mono">
-            SliceManager Architecture
+            완성된 메쉬 슬라이스 시스템
           </p>
         </motion.div>
 
-        {/* 시스템 구조 */}
+        {/* 핵심 기술 1 */}
         <motion.div
-          className="p-4 bg-gray-900/50 backdrop-blur-sm border border-cyan-700/50 rounded-xl"
+          className="p-4 bg-gradient-to-br from-purple-950/40 to-purple-900/20 border-2 border-purple-500/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">🏗️</div>
+            <div className="text-3xl">🌍</div>
             <div>
-              <h3 className="text-base font-bold text-cyan-400 font-mono mb-2">
-                핵심 컴포넌트
+              <h3 className="text-lg font-bold text-purple-400 font-mono mb-2">
+                Coordinate Unification
               </h3>
-              <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
-                <li>• <span className="text-cyan-400">SliceManager</span>: 중앙 제어</li>
-                <li>• <span className="text-purple-400">CoordinateConverter</span>: 좌표 변환</li>
-                <li>• <span className="text-green-400">TriangleDetector</span>: 교차 검사</li>
-                <li>• <span className="text-yellow-400">FloodFillGrouper</span>: 그룹화</li>
-              </ul>
+              <p className="text-gray-300 font-mono text-xs leading-relaxed">
+                Ray와 Mesh를 같은 World 공간에서 처리<br />
+                <span className="text-purple-300">→ Transform.TransformPoint() 활용</span>
+              </p>
             </div>
           </div>
         </motion.div>
 
-        {/* 처리 파이프라인 */}
+        {/* 핵심 기술 2 */}
         <motion.div
-          className="p-4 bg-gray-900/50 backdrop-blur-sm border border-purple-700/50 rounded-xl"
+          className="p-4 bg-gradient-to-br from-green-950/40 to-green-900/20 border-2 border-green-500/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">⚙️</div>
+            <div className="text-3xl">🎯</div>
             <div>
-              <h3 className="text-base font-bold text-purple-400 font-mono mb-2">
-                처리 파이프라인
+              <h3 className="text-lg font-bold text-green-400 font-mono mb-2">
+                Triangle Detection
               </h3>
-              <ol className="space-y-2 text-gray-400 font-mono text-xs list-decimal list-inside">
-                <li><span className="text-cyan-400">입력</span>: 칼날 위치 (World)</li>
-                <li><span className="text-purple-400">변환</span>: 메쉬 정점 → World 좌표</li>
-                <li><span className="text-green-400">검출</span>: 교차 삼각형 찾기</li>
-                <li><span className="text-yellow-400">그룹화</span>: Flood-fill 실행</li>
-                <li><span className="text-blue-400">분리</span>: 새 메쉬 생성</li>
-              </ol>
+              <p className="text-gray-300 font-mono text-xs leading-relaxed">
+                Edge가 아닌 Face(삼각형) 단위로 검사<br />
+                <span className="text-green-300">→ Ray-Triangle Intersection</span>
+              </p>
             </div>
           </div>
         </motion.div>
 
-        {/* 핵심 기능 */}
+        {/* 핵심 기술 3 */}
         <motion.div
-          className="p-4 bg-green-950/30 border border-green-700/50 rounded-xl"
+          className="p-4 bg-gradient-to-br from-yellow-950/40 to-yellow-900/20 border-2 border-yellow-500/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.7, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">✨</div>
+            <div className="text-3xl">🌊</div>
             <div>
-              <h3 className="text-base font-bold text-green-400 font-mono mb-2">
-                주요 특징
+              <h3 className="text-lg font-bold text-yellow-400 font-mono mb-2">
+                Flood-fill Algorithm
               </h3>
-              <ul className="space-y-1.5 text-gray-300 font-mono text-xs">
-                <li>• <span className="text-green-400 font-bold">완전 자동화</span>: 한 번 호출로 모든 처리</li>
-                <li>• <span className="text-green-400 font-bold">재사용 가능</span>: 모듈화된 구조</li>
-                <li>• <span className="text-green-400 font-bold">확장 가능</span>: 새 기능 추가 용이</li>
-              </ul>
+              <p className="text-gray-300 font-mono text-xs leading-relaxed">
+                경계를 넘지 않는 연결된 삼각형 그룹화<br />
+                <span className="text-yellow-300">→ Queue 기반 BFS 탐색</span>
+              </p>
             </div>
           </div>
         </motion.div>
 
-        {/* 검증 로직 */}
+        {/* 성과 */}
         <motion.div
-          className="p-4 bg-gray-900/50 backdrop-blur-sm border border-orange-700/50 rounded-xl"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
+          className="p-5 bg-gradient-to-br from-cyan-950/40 to-cyan-900/20 border-2 border-cyan-500/70 rounded-xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">🔍</div>
-            <div>
-              <h3 className="text-base font-bold text-orange-400 font-mono mb-2">
-                검증 시스템
+            <div className="text-3xl">✨</div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-cyan-400 font-mono mb-3">
+                성과
               </h3>
-              <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
-                <li>• 그룹 균형 체크 (Group A ≈ Group B)</li>
-                <li>• 연결성 검증 (모든 삼각형 도달 가능)</li>
-                <li>• 경계 완전성 검사</li>
-              </ul>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400 text-lg">✓</span>
+                  <span className="text-gray-300 font-mono text-sm">
+                    100% 정확한 메쉬 분리
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400 text-lg">✓</span>
+                  <span className="text-gray-300 font-mono text-sm">
+                    복잡한 형상도 처리 가능
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400 text-lg">✓</span>
+                  <span className="text-gray-300 font-mono text-sm">
+                    실시간 처리 (~3ms)
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
 
-        {/* 에러 처리 */}
+        {/* 최종 메시지 */}
         <motion.div
-          className="p-4 bg-gray-900/50 backdrop-blur-sm border border-red-700/50 rounded-xl"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
-        >
-          <div className="flex items-start gap-3">
-            <div className="text-2xl">🛡️</div>
-            <div>
-              <h3 className="text-base font-bold text-red-400 font-mono mb-2">
-                안전 장치
-              </h3>
-              <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
-                <li>• 불균형 감지 → 슬라이스 취소</li>
-                <li>• 연결 끊김 감지 → 재시도</li>
-                <li>• 예외 처리 및 로깅</li>
-              </ul>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* 코드 예시 */}
-        <motion.div
-          className="p-4 bg-gray-900/80 border border-blue-500/30 rounded-xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-        >
-          <p className="text-blue-400 font-mono text-xs mb-3">사용 예시</p>
-          <pre className="bg-black/50 p-3 rounded text-[10px] overflow-x-auto">
-            <code className="text-gray-300 font-mono">
-{`// 간단한 호출
-SliceManager.Instance.SliceMesh(
-    targetMesh,
-    knifePosition,
-    knifeDirection
-);
-
-// 결과: 두 개의 새로운 메쉬 생성
-// - 자동 좌표 변환
-// - 자동 그룹화
-// - 자동 검증`}
-            </code>
-          </pre>
-        </motion.div>
-
-        {/* 결론 */}
-        <motion.div
-          className="p-4 bg-cyan-950/30 border-l-4 border-cyan-500 rounded-r-xl"
+          className="p-5 bg-gradient-to-r from-cyan-950/50 to-purple-950/50 border-l-4 border-cyan-500 rounded-r-xl"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
+          transition={{ delay: 1.1, duration: 0.8 }}
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">🎯</div>
+            <div className="text-3xl">🎯</div>
             <div>
-              <h3 className="text-sm font-bold text-cyan-400 font-mono mb-2">
-                완성된 시스템
+              <h3 className="text-base font-bold text-cyan-400 font-mono mb-2">
+                최종 결과
               </h3>
-              <p className="text-gray-300 font-mono text-xs leading-relaxed">
-                "모든 시행착오가 하나의 시스템으로<br />
-                깔끔하고 확장 가능한 아키텍처<br />
-                → <span className="text-cyan-400 font-bold">Production Ready!</span>"
+              <p className="text-gray-300 font-mono text-sm leading-relaxed">
+                모든 시행착오가<br />
+                하나의 완성된 솔루션으로<br />
+                <span className="text-cyan-400 font-bold text-base">
+                  → VR 수술 시뮬레이션 완성!
+                </span>
               </p>
             </div>
           </div>
@@ -211,112 +179,445 @@ SliceManager.Instance.SliceMesh(
   );
 }
 
-// 시스템 아키텍처 다이어그램
-function SystemArchitectureDiagram() {
+// 슬라이스 프로세스 애니메이션
+function SliceProcessAnimation() {
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center gap-8">
-      {/* SliceManager (최상위) */}
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Step 1: Input - 메쉬 표시 (0-2초) */}
       <motion.div
-        className="relative px-6 py-4 bg-cyan-500/20 border-2 border-cyan-400 rounded-xl backdrop-blur-sm"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-      >
-        <div className="text-cyan-400 font-mono text-sm font-bold">SliceManager</div>
-        <div className="text-cyan-300 font-mono text-xs mt-1">중앙 제어</div>
-      </motion.div>
-
-      {/* 화살표 */}
-      <motion.div
-        className="flex gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        <svg className="w-6 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-      </motion.div>
-
-      {/* 중간 계층 */}
-      <div className="flex gap-4">
-        <motion.div
-          className="px-4 py-3 bg-purple-500/20 border border-purple-400 rounded-lg backdrop-blur-sm"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <div className="text-purple-400 font-mono text-xs font-bold">Coordinate</div>
-          <div className="text-purple-300 font-mono text-[10px]">Converter</div>
-        </motion.div>
-
-        <motion.div
-          className="px-4 py-3 bg-green-500/20 border border-green-400 rounded-lg backdrop-blur-sm"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          <div className="text-green-400 font-mono text-xs font-bold">Triangle</div>
-          <div className="text-green-300 font-mono text-[10px]">Detector</div>
-        </motion.div>
-
-        <motion.div
-          className="px-4 py-3 bg-yellow-500/20 border border-yellow-400 rounded-lg backdrop-blur-sm"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8 }}
-        >
-          <div className="text-yellow-400 font-mono text-xs font-bold">FloodFill</div>
-          <div className="text-yellow-300 font-mono text-[10px]">Grouper</div>
-        </motion.div>
-      </div>
-
-      {/* 화살표 */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.0 }}
-      >
-        <svg className="w-6 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-      </motion.div>
-
-      {/* 출력 */}
-      <div className="flex gap-4">
-        <motion.div
-          className="px-5 py-3 bg-blue-500/20 border border-blue-400 rounded-lg backdrop-blur-sm"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.2 }}
-        >
-          <div className="text-blue-400 font-mono text-xs font-bold">Mesh A</div>
-        </motion.div>
-
-        <motion.div
-          className="px-5 py-3 bg-blue-500/20 border border-blue-400 rounded-lg backdrop-blur-sm"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.3 }}
-        >
-          <div className="text-blue-400 font-mono text-xs font-bold">Mesh B</div>
-        </motion.div>
-      </div>
-
-      {/* 데이터 흐름 애니메이션 */}
-      <motion.div
-        className="absolute top-32 w-1 bg-cyan-400 rounded-full"
-        style={{ boxShadow: '0 0 10px rgba(34, 211, 238, 0.6)' }}
+        className="absolute"
         animate={{
-          height: [0, 80, 80],
-          opacity: [1, 1, 0],
+          opacity: [1, 1, 0.3, 0.3, 0.3, 0.3, 1],
         }}
         transition={{
-          duration: 2,
+          duration: 8,
+          times: [0, 0.2, 0.25, 0.5, 0.75, 0.9, 1],
           repeat: Infinity,
-          repeatDelay: 1,
+        }}
+      >
+        <MeshVisualization />
+      </motion.div>
+
+      {/* World Space 라벨 (0-2초) */}
+      <motion.div
+        className="absolute top-8 left-8 px-4 py-2 bg-purple-500/30 border border-purple-400 rounded-lg backdrop-blur-sm"
+        animate={{
+          opacity: [0, 1, 1, 0, 0, 0, 0],
+        }}
+        transition={{
+          duration: 8,
+          times: [0, 0.05, 0.2, 0.25, 0.5, 0.75, 1],
+          repeat: Infinity,
+        }}
+      >
+        <div className="text-purple-300 font-mono text-xs">World Space</div>
+      </motion.div>
+
+      {/* Step 2: Detection - Ray casting (2-4초) */}
+      <motion.div
+        className="absolute w-1 h-64 bg-cyan-400 rounded-full"
+        style={{ boxShadow: '0 0 20px rgba(34, 211, 238, 0.8)' }}
+        animate={{
+          x: [-150, -150, 150, 150, -150],
+          opacity: [0, 0, 1, 1, 0, 0, 0],
+        }}
+        transition={{
+          duration: 8,
+          times: [0, 0.25, 0.3, 0.45, 0.5, 0.75, 1],
+          repeat: Infinity,
         }}
       />
+
+      {/* 교차된 삼각형 표시 */}
+      <IntersectedTriangles />
+
+      {/* 교차 카운터 (2-4초) */}
+      <motion.div
+        className="absolute top-8 right-8 px-4 py-2 bg-red-500/30 border border-red-400 rounded-lg backdrop-blur-sm"
+        animate={{
+          opacity: [0, 0, 1, 1, 0, 0, 0],
+        }}
+        transition={{
+          duration: 8,
+          times: [0, 0.3, 0.35, 0.48, 0.5, 0.75, 1],
+          repeat: Infinity,
+        }}
+      >
+        <CrossedCounter />
+      </motion.div>
+
+      {/* Step 3: Grouping - Flood-fill (4-6초) */}
+      <FloodFillVisualization />
+
+      {/* 그룹 카운터 (4-6초) */}
+      <motion.div
+        className="absolute top-8 right-8 px-4 py-3 bg-green-500/30 border border-green-400 rounded-lg backdrop-blur-sm"
+        animate={{
+          opacity: [0, 0, 0, 1, 1, 0, 0],
+        }}
+        transition={{
+          duration: 8,
+          times: [0, 0.5, 0.55, 0.6, 0.73, 0.75, 1],
+          repeat: Infinity,
+        }}
+      >
+        <GroupCounter />
+      </motion.div>
+
+      {/* Step 4: Result - 분리 (6-8초) */}
+      <SeparatedMeshes />
+
+      {/* SUCCESS 표시 (6.5-7.5초) */}
+      <motion.div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        animate={{
+          opacity: [0, 0, 0, 1, 1, 0, 0],
+          scale: [0, 0, 0, 1.2, 1, 0, 0],
+        }}
+        transition={{
+          duration: 8,
+          times: [0, 0.75, 0.8, 0.82, 0.88, 0.9, 1],
+          repeat: Infinity,
+        }}
+      >
+        <div className="flex flex-col items-center gap-4">
+          <span className="text-8xl">✓</span>
+          <span className="text-green-400 font-mono text-3xl font-bold">SUCCESS!</span>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+// 메쉬 시각화
+function MeshVisualization() {
+  return (
+    <div className="relative">
+      {/* 중앙 메쉬 (18개 삼각형) */}
+      {[...Array(18)].map((_, i) => {
+        const angle = (i * Math.PI * 2) / 18;
+        const radius = 100;
+        
+        return (
+          <div
+            key={`mesh-tri-${i}`}
+            className="absolute"
+            style={{
+              width: 0,
+              height: 0,
+              borderLeft: '12px solid transparent',
+              borderRight: '12px solid transparent',
+              borderBottom: '21px solid rgba(156, 163, 175, 0.5)',
+              left: `${Math.cos(angle) * radius}px`,
+              top: `${Math.sin(angle) * radius}px`,
+              transform: `translate(-50%, -50%) rotate(${angle * 180 / Math.PI}deg)`,
+            }}
+          />
+        );
+      })}
+
+      {/* 중앙 코어 */}
+      <div className="absolute w-20 h-20 -left-10 -top-10 bg-gray-500/30 rounded-full" />
+    </div>
+  );
+}
+
+// 교차된 삼각형
+function IntersectedTriangles() {
+  return (
+    <>
+      {[7, 8, 9, 10, 11].map((i) => {
+        const angle = (i * Math.PI * 2) / 18;
+        const radius = 100;
+        
+        return (
+          <motion.div
+            key={`intersect-${i}`}
+            className="absolute"
+            style={{
+              width: 0,
+              height: 0,
+              borderLeft: '12px solid transparent',
+              borderRight: '12px solid transparent',
+              borderBottom: '21px solid rgba(239, 68, 68, 0.8)',
+              left: `calc(50% + ${Math.cos(angle) * radius}px)`,
+              top: `calc(50% + ${Math.sin(angle) * radius}px)`,
+              transform: `translate(-50%, -50%) rotate(${angle * 180 / Math.PI}deg)`,
+            }}
+            animate={{
+              opacity: [0, 0, 0, 1, 1, 0.3, 0.3, 0],
+              borderBottomColor: [
+                'rgba(239, 68, 68, 0)',
+                'rgba(239, 68, 68, 0)',
+                'rgba(239, 68, 68, 0)',
+                'rgba(239, 68, 68, 0.8)',
+                'rgba(239, 68, 68, 0.8)',
+                'rgba(239, 68, 68, 0.3)',
+                'rgba(239, 68, 68, 0.3)',
+                'rgba(239, 68, 68, 0)',
+              ],
+            }}
+            transition={{
+              duration: 8,
+              times: [0, 0.25, 0.3, 0.35, 0.48, 0.5, 0.75, 1],
+              delay: (i - 7) * 0.03,
+              repeat: Infinity,
+            }}
+          />
+        );
+      })}
+    </>
+  );
+}
+
+// Flood-fill 시각화
+function FloodFillVisualization() {
+  // Group A (0-6)
+  const groupAIndices = [0, 1, 2, 3, 4, 5, 6];
+  // Group B (12-17)
+  const groupBIndices = [12, 13, 14, 15, 16, 17];
+
+  return (
+    <>
+      {/* Group A - 초록 물결 */}
+      {groupAIndices.map((i) => {
+        const angle = (i * Math.PI * 2) / 18;
+        const radius = 100;
+        
+        return (
+          <motion.div
+            key={`flood-a-${i}`}
+            className="absolute w-10 h-10 border-2 border-green-400 rounded-full"
+            style={{
+              left: `calc(50% + ${Math.cos(angle) * radius}px)`,
+              top: `calc(50% + ${Math.sin(angle) * radius}px)`,
+              boxShadow: '0 0 15px rgba(74, 222, 128, 0.6)',
+            }}
+            animate={{
+              opacity: [0, 0, 0, 1, 0, 0, 0],
+              scale: [0, 0, 0, 1.5, 2, 0, 0],
+            }}
+            transition={{
+              duration: 8,
+              times: [0, 0.5, 0.52, 0.56, 0.62, 0.75, 1],
+              delay: i * 0.03,
+              repeat: Infinity,
+            }}
+          />
+        );
+      })}
+
+      {/* Group B - 파랑 물결 */}
+      {groupBIndices.map((i) => {
+        const angle = (i * Math.PI * 2) / 18;
+        const radius = 100;
+        
+        return (
+          <motion.div
+            key={`flood-b-${i}`}
+            className="absolute w-10 h-10 border-2 border-blue-400 rounded-full"
+            style={{
+              left: `calc(50% + ${Math.cos(angle) * radius}px)`,
+              top: `calc(50% + ${Math.sin(angle) * radius}px)`,
+              boxShadow: '0 0 15px rgba(59, 130, 246, 0.6)',
+            }}
+            animate={{
+              opacity: [0, 0, 0, 1, 0, 0, 0],
+              scale: [0, 0, 0, 1.5, 2, 0, 0],
+            }}
+            transition={{
+              duration: 8,
+              times: [0, 0.5, 0.52, 0.56, 0.62, 0.75, 1],
+              delay: (i - 12) * 0.03,
+              repeat: Infinity,
+            }}
+          />
+        );
+      })}
+    </>
+  );
+}
+
+// 분리된 메쉬
+function SeparatedMeshes() {
+  return (
+    <>
+      {/* Group A - 왼쪽으로 이동 */}
+      <motion.div
+        className="absolute w-32 h-32 border-2 border-green-400 rounded-xl bg-green-500/20"
+        style={{ boxShadow: '0 0 30px rgba(74, 222, 128, 0.4)' }}
+        animate={{
+          x: [0, 0, 0, -80, -80, 0],
+          opacity: [0, 0, 0, 1, 1, 0],
+        }}
+        transition={{
+          duration: 8,
+          times: [0, 0.75, 0.78, 0.82, 0.9, 1],
+          repeat: Infinity,
+        }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-green-400 font-mono text-sm font-bold">Group A</div>
+        </div>
+      </motion.div>
+
+      {/* Group B - 오른쪽으로 이동 */}
+      <motion.div
+        className="absolute w-32 h-32 border-2 border-blue-400 rounded-xl bg-blue-500/20"
+        style={{ boxShadow: '0 0 30px rgba(59, 130, 246, 0.4)' }}
+        animate={{
+          x: [0, 0, 0, 80, 80, 0],
+          opacity: [0, 0, 0, 1, 1, 0],
+        }}
+        transition={{
+          duration: 8,
+          times: [0, 0.75, 0.78, 0.82, 0.9, 1],
+          repeat: Infinity,
+        }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-blue-400 font-mono text-sm font-bold">Group B</div>
+        </div>
+      </motion.div>
+    </>
+  );
+}
+
+// 단계 표시기
+function StageIndicator() {
+  const [stage, setStage] = useState(1);
+
+  useEffect(() => {
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = ((Date.now() - startTime) % 8000) / 8000;
+
+      if (elapsed < 0.25) {
+        setStage(1);
+      } else if (elapsed < 0.5) {
+        setStage(2);
+      } else if (elapsed < 0.75) {
+        setStage(3);
+      } else {
+        setStage(4);
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    const frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  const stages = [
+    { num: 1, name: 'Input', color: 'purple' },
+    { num: 2, name: 'Detection', color: 'green' },
+    { num: 3, name: 'Grouping', color: 'yellow' },
+    { num: 4, name: 'Result', color: 'cyan' },
+  ];
+
+  return (
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+      {stages.map((s) => (
+        <div
+          key={s.num}
+          className={`px-3 py-2 rounded-lg backdrop-blur-sm transition-all duration-300 ${
+            stage === s.num
+              ? `bg-${s.color}-500/40 border-2 border-${s.color}-400 scale-110`
+              : 'bg-gray-800/40 border border-gray-600'
+          }`}
+        >
+          <div
+            className={`font-mono text-xs font-bold ${
+              stage === s.num ? `text-${s.color}-300` : 'text-gray-500'
+            }`}
+          >
+            {s.num}. {s.name}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// 교차 카운터
+function CrossedCounter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = ((Date.now() - startTime) % 8000) / 8000;
+
+      if (elapsed >= 0.3 && elapsed < 0.48) {
+        const progress = (elapsed - 0.3) / 0.18;
+        setCount(Math.min(5, Math.floor(progress * 5)));
+      } else if (elapsed < 0.3) {
+        setCount(0);
+      } else if (elapsed >= 0.48 && elapsed < 0.5) {
+        setCount(5);
+      } else {
+        setCount(0);
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    const frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  return (
+    <div className="font-mono text-sm">
+      <div className="text-red-300 font-bold">{count} triangles</div>
+      <div className="text-red-400 text-xs">crossed</div>
+    </div>
+  );
+}
+
+// 그룹 카운터
+function GroupCounter() {
+  const [groupA, setGroupA] = useState(0);
+  const [groupB, setGroupB] = useState(0);
+
+  useEffect(() => {
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = ((Date.now() - startTime) % 8000) / 8000;
+
+      if (elapsed >= 0.5 && elapsed < 0.73) {
+        const progress = (elapsed - 0.5) / 0.23;
+        setGroupA(Math.floor(progress * 7));
+        setGroupB(Math.floor(progress * 6));
+      } else if (elapsed < 0.5) {
+        setGroupA(0);
+        setGroupB(0);
+      } else if (elapsed >= 0.73 && elapsed < 0.75) {
+        setGroupA(7);
+        setGroupB(6);
+      } else {
+        setGroupA(0);
+        setGroupB(0);
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    const frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  return (
+    <div className="font-mono text-sm space-y-1">
+      <div className="flex items-center gap-2">
+        <span className="text-green-300 font-bold">{groupA}</span>
+        <span className="text-green-400 text-xs">|</span>
+        <span className="text-blue-300 font-bold">{groupB}</span>
+      </div>
+      <div className="text-gray-300 text-xs">triangles</div>
     </div>
   );
 }

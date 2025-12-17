@@ -1,4 +1,3 @@
-// app/projects/mesh-creation/slides/Slide06Breakthrough.tsx
 'use client';
 
 import { motion } from 'framer-motion';
@@ -6,9 +5,7 @@ import { motion } from 'framer-motion';
 export default function Slide06Breakthrough() {
   return (
     <div className="w-full h-full flex items-center justify-center px-20 gap-12 py-16 pb-32">
-      {/* 왼쪽: Arc-length 비교 애니메이션 */}
       <div className="w-[45%] h-full flex flex-col justify-center gap-6">
-        {/* 상단: Index 기반 (문제) */}
         <div className="relative h-[42%] border-2 border-red-500/30 rounded-2xl bg-red-950/20 overflow-hidden">
           <IndexBasedAnimation />
           
@@ -22,14 +19,12 @@ export default function Slide06Breakthrough() {
           </motion.div>
         </div>
 
-        {/* 중앙 구분선 */}
         <div className="relative flex items-center py-2">
           <div className="flex-1 h-px bg-gray-700"></div>
           <div className="mx-4 text-2xl text-green-500 font-bold">→</div>
           <div className="flex-1 h-px bg-gray-700"></div>
         </div>
 
-        {/* 하단: Arc-length 기반 (해결) */}
         <div className="relative h-[42%] border-2 border-green-500/30 rounded-2xl bg-green-950/20 overflow-hidden">
           <ArcLengthAnimation />
           
@@ -44,8 +39,7 @@ export default function Slide06Breakthrough() {
         </div>
       </div>
 
-      {/* 오른쪽: 설명 */}
-      <div className="w-[55%] h-full flex flex-col gap-4 overflow-y-auto pr-2 pb-8 custom-scrollbar">
+      <div className="w-[55%] h-full flex flex-col gap-5 overflow-y-auto pr-2 custom-scrollbar">
         <style jsx>{`
           .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -65,33 +59,29 @@ export default function Slide06Breakthrough() {
             box-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
           }
         `}</style>
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-5xl font-bold text-green-400 font-mono mb-3">
-            The Breakthrough
+            Breakthrough
           </h2>
           <p className="text-xl text-green-300 font-mono">
             Arc-length Based Triangulation
           </p>
         </motion.div>
 
-        {/* 핵심 발견 */}
         <motion.div
           className="p-4 bg-yellow-950/30 border-2 border-yellow-500/70 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.3 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-3xl">💡</div>
             <div>
-              <h3 className="text-base font-bold text-yellow-400 font-mono mb-2">
-                결정적 발견
-              </h3>
+              <h3 className="text-base font-bold text-yellow-400 font-mono mb-2">결정적 발견</h3>
               <p className="text-gray-300 font-mono text-xs leading-relaxed">
                 정점의 <span className="text-red-400">인덱스 순서</span>가 아닌<br />
                 <span className="text-green-400 font-bold">실제 거리(Arc-length)</span>로 정렬하면<br />
@@ -101,19 +91,16 @@ export default function Slide06Breakthrough() {
           </div>
         </motion.div>
 
-        {/* 문제 분석 */}
         <motion.div
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-red-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">❌</div>
             <div>
-              <h3 className="text-base font-bold text-red-400 font-mono mb-2">
-                Index 기반의 문제
-              </h3>
+              <h3 className="text-base font-bold text-red-400 font-mono mb-2">Index 기반의 문제</h3>
               <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
                 <li>• 정점 배열 순서 ≠ 실제 공간 순서</li>
                 <li>• 멀리 떨어진 점들끼리 연결</li>
@@ -123,19 +110,16 @@ export default function Slide06Breakthrough() {
           </div>
         </motion.div>
 
-        {/* 해결 방법 */}
         <motion.div
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-green-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
+          transition={{ delay: 0.9 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">✓</div>
             <div>
-              <h3 className="text-base font-bold text-green-400 font-mono mb-2">
-                Arc-length 해결책
-              </h3>
+              <h3 className="text-base font-bold text-green-400 font-mono mb-2">Arc-length 해결책</h3>
               <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
                 <li>• 중심점에서 각 정점까지 실제 거리 계산</li>
                 <li>• 거리 순으로 정렬</li>
@@ -145,94 +129,40 @@ export default function Slide06Breakthrough() {
           </div>
         </motion.div>
 
-        {/* 코드 비교 */}
-        <motion.div
-          className="p-4 bg-gray-900/80 border border-blue-500/30 rounded-xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-        >
-          <div className="space-y-3">
-            <div>
-              <p className="text-red-400 font-mono text-xs mb-2">❌ Before (Index)</p>
-              <pre className="bg-black/50 p-3 rounded text-[10px] overflow-x-auto">
-                <code className="text-gray-300 font-mono">
-{`// 배열 순서대로 연결
-for (int i = 0; i < points.Count; i++) {
-    AddTriangle(center, points[i], points[i+1]);
-}`}
-                </code>
-              </pre>
-            </div>
-            
-            <div>
-              <p className="text-green-400 font-mono text-xs mb-2">✓ After (Arc-length)</p>
-              <pre className="bg-black/50 p-3 rounded text-[10px] overflow-x-auto">
-                <code className="text-gray-300 font-mono">
-{`// 실제 거리로 정렬
-points.Sort((a, b) => {
-    float distA = Vector3.Distance(center, a);
-    float distB = Vector3.Distance(center, b);
-    float angleA = Mathf.Atan2(a.z - center.z, a.x - center.x);
-    float angleB = Mathf.Atan2(b.z - center.z, b.x - center.x);
-    return angleA.CompareTo(angleB);
-});`}
-                </code>
-              </pre>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* 결과 */}
         <motion.div
           className="p-4 bg-green-950/30 border-2 border-green-500/70 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
+          transition={{ delay: 1.2 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">🎯</div>
             <div>
-              <h3 className="text-base font-bold text-green-400 font-mono mb-2">
-                완벽한 결과
-              </h3>
+              <h3 className="text-base font-bold text-green-400 font-mono mb-2">완벽한 결과</h3>
               <ul className="space-y-1.5 text-gray-300 font-mono text-xs">
                 <li>• <span className="text-green-400 font-bold">자연스러운</span> 삼각형 배치</li>
                 <li>• <span className="text-green-400 font-bold">시각적으로</span> 완벽함</li>
                 <li>• <span className="text-green-400 font-bold">성능</span>: ~1ms</li>
-                <li>• 모든 형태에서 안정적</li>
               </ul>
             </div>
           </div>
         </motion.div>
 
-        {/* 결론 */}
         <motion.div
           className="p-4 bg-green-950/30 border-l-4 border-green-500 rounded-r-xl"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.3, duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
         >
-          <div className="flex items-start gap-3">
-            <div className="text-2xl">🎉</div>
-            <div>
-              <h3 className="text-sm font-bold text-green-400 font-mono mb-2">
-                돌파구 발견!
-              </h3>
-              <p className="text-gray-300 font-mono text-xs leading-relaxed">
-                "공간적 정보를 활용하는 것이 핵심<br />
-                단순한 정렬 방식 변경으로 완벽한 해결<br />
-                → <span className="text-green-400 font-bold">Production Ready!</span>"
-              </p>
-            </div>
-          </div>
+          <p className="text-gray-300 font-mono text-xs italic leading-relaxed">
+            "공간적 정보를 활용하는 것이 핵심. 단순한 정렬 방식 변경으로 완벽한 해결!"
+          </p>
         </motion.div>
       </div>
     </div>
   );
 }
 
-// Index 기반 애니메이션 (문제)
 function IndexBasedAnimation() {
   const points = [
     { x: 0, y: -60, idx: 0 },
@@ -246,10 +176,8 @@ function IndexBasedAnimation() {
 
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* 중심점 */}
       <div className="absolute w-3 h-3 bg-red-400 rounded-full z-10" />
 
-      {/* 점들 */}
       {points.map((p) => (
         <div
           key={p.idx}
@@ -261,7 +189,6 @@ function IndexBasedAnimation() {
         />
       ))}
 
-      {/* 잘못된 연결 (Index 순) */}
       {points.map((p, i) => {
         const next = points[(i + 1) % points.length];
         return (
@@ -293,9 +220,7 @@ function IndexBasedAnimation() {
   );
 }
 
-// Arc-length 기반 애니메이션 (해결)
 function ArcLengthAnimation() {
-  // 각도 순으로 정렬된 점들
   const points = [
     { x: 0, y: -60 },
     { x: 50, y: -40 },
@@ -312,10 +237,8 @@ function ArcLengthAnimation() {
 
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* 중심점 */}
       <div className="absolute w-3 h-3 bg-green-400 rounded-full z-10" />
 
-      {/* 점들 */}
       {points.map((p, i) => (
         <div
           key={i}
@@ -327,7 +250,6 @@ function ArcLengthAnimation() {
         />
       ))}
 
-      {/* 올바른 연결 (Arc-length 순) */}
       {points.map((p, i) => {
         const next = points[(i + 1) % points.length];
         return (
@@ -352,33 +274,6 @@ function ArcLengthAnimation() {
               strokeWidth="2"
             />
           </motion.svg>
-        );
-      })}
-
-      {/* 삼각형 채우기 */}
-      {points.map((p, i) => {
-        const next = points[(i + 1) % points.length];
-        return (
-          <motion.div
-            key={`tri-${i}`}
-            className="absolute w-0 h-0"
-            style={{
-              borderLeft: '15px solid transparent',
-              borderRight: '15px solid transparent',
-              borderBottom: '25px solid rgba(34, 197, 94, 0.2)',
-              left: `calc(50% + ${(p.x + next.x) / 3}px)`,
-              top: `calc(50% + ${(p.y + next.y) / 3}px)`,
-              transform: `rotate(${Math.atan2(next.y - p.y, next.x - p.x) * 180 / Math.PI}deg)`,
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0, 0, 0.6, 0.6] }}
-            transition={{
-              duration: 6,
-              times: [0, 0.4, 0.5, 0.6, 1],
-              repeat: Infinity,
-              delay: i * 0.1,
-            }}
-          />
         );
       })}
     </div>

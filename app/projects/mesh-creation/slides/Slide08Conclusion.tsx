@@ -1,11 +1,30 @@
-// app/projects/mesh-creation/slides/Slide08Conclusion.tsx
 'use client';
 
 import { motion } from 'framer-motion';
 
 export default function Slide08Conclusion() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-20 py-16 pb-32">
+    <div className="w-full h-full flex flex-col items-center overflow-y-auto px-20 pt-12 pb-32 custom-scrollbar">
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(6, 182, 212, 0.1);
+          border-radius: 10px;
+          margin: 8px 0;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #06b6d4 0%, #0891b2 100%);
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #22d3ee 0%, #06b6d4 100%);
+          box-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
+        }
+      `}</style>
+
       <div className="max-w-4xl w-full space-y-8">
         {/* 헤더 */}
         <motion.div
@@ -131,7 +150,7 @@ export default function Slide08Conclusion() {
               <p className="text-gray-400 font-mono text-xs mt-1">완전성</p>
             </div>
             <div>
-              <p className="text-green-400 font-mono text-3xl font-bold">4번</p>
+              <p className="text-green-400 font-mono text-3xl font-bold">3번</p>
               <p className="text-gray-400 font-mono text-xs mt-1">시도</p>
             </div>
           </div>
@@ -168,39 +187,12 @@ export default function Slide08Conclusion() {
           </div>
         </motion.div>
 
-        {/* 실제 활용 */}
-        <motion.div
-          className="p-6 bg-gray-900/50 backdrop-blur-sm border border-yellow-700/50 rounded-xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.6 }}
-        >
-          <h3 className="text-xl font-bold text-yellow-400 font-mono mb-4 flex items-center gap-3">
-            <span className="text-3xl">🏥</span>
-            실제 활용
-          </h3>
-          <ul className="space-y-2 text-gray-300 font-mono text-sm">
-            <li className="flex items-center gap-3">
-              <span className="text-yellow-400">→</span>
-              <span>VR 수술 시뮬레이션 훈련</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="text-yellow-400">→</span>
-              <span>실시간 조직 절개 및 재구성</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="text-yellow-400">→</span>
-              <span>자연스러운 시각적 결과</span>
-            </li>
-          </ul>
-        </motion.div>
-
         {/* 마무리 */}
         <motion.div
           className="text-center p-8 bg-gradient-to-r from-cyan-950/30 to-green-950/30 border-2 border-cyan-500/50 rounded-2xl"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 2.1, duration: 0.8 }}
+          transition={{ delay: 1.8, duration: 0.8 }}
         >
           <p className="text-2xl text-cyan-400 font-mono font-bold mb-3">
             "공간 정보의 힘"
@@ -229,10 +221,10 @@ export default function Slide08Conclusion() {
           className="text-center space-y-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.4, duration: 0.8 }}
+          transition={{ delay: 2.1, duration: 0.8 }}
         >
           <p className="text-gray-400 font-mono text-sm">
-            Mesh Slicing + Mesh Creation
+            Mesh Slicing + Cap Mesh Creation
           </p>
           <p className="text-gray-500 font-mono text-sm">
             Thank you for watching!

@@ -1,15 +1,14 @@
-// app/projects/mesh-creation/slides/Slide02Problem.tsx
 'use client';
 
 import { motion } from 'framer-motion';
 
 export default function Slide02Problem() {
   return (
-    <div className="w-full h-full flex items-center justify-center px-20 gap-12 py-20">
-      {/* 왼쪽: 3D 비교 애니메이션 */}
+    <div className="w-full h-full flex items-center justify-center px-20 gap-12 py-10 pb-30">
+      {/* 왼쪽: 비교 애니메이션 */}
       <div className="w-1/2 h-full flex flex-col justify-center gap-6">
-        {/* 상단: 문제 상황 */}
-        <div className="relative h-[45%] border-2 border-red-500/30 rounded-2xl bg-red-950/20 overflow-hidden">
+        {/* 상단: 절단 후 구멍 */}
+        <div className="relative h-[42%] border-2 border-red-500/30 rounded-2xl bg-red-950/20 overflow-hidden">
           <HoleProblemAnimation />
 
           <motion.div
@@ -20,17 +19,35 @@ export default function Slide02Problem() {
           >
             <p className="text-red-400 font-mono text-sm">절단 후: 구멍 발생</p>
           </motion.div>
+
+          <motion.div
+            className="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none"
+            animate={{
+              opacity: [0, 0, 1, 1, 0, 0],
+              y: [10, 10, 0, 0, 10, 10]
+            }}
+            transition={{
+              duration: 7,
+              times: [0, 0.44, 0.45, 0.6, 0.62, 1],
+              repeat: Infinity,
+            }}
+          >
+            <div className="flex items-center justify-center gap-2 px-4 py-2 bg-red-500/20 backdrop-blur-sm border border-red-500/50 rounded-lg">
+              <span className="text-2xl">⚠️</span>
+              <span className="text-red-400 font-mono text-sm font-bold mt-2">문제</span>
+            </div>
+          </motion.div>
         </div>
 
         {/* 중앙 구분선 */}
         <div className="relative flex items-center py-2">
           <div className="flex-1 h-px bg-gray-700"></div>
-          <div className="mx-4 text-2xl text-gray-500 font-bold">→</div>
+          <div className="mx-4 text-3xl text-gray-500 font-bold">→</div>
           <div className="flex-1 h-px bg-gray-700"></div>
         </div>
 
-        {/* 하단: 해결 목표 */}
-        <div className="relative h-[45%] border-2 border-green-500/30 rounded-2xl bg-green-950/20 overflow-hidden">
+        {/* 하단: Cap Mesh 솔루션 */}
+        <div className="relative h-[42%] border-2 border-green-500/30 rounded-2xl bg-green-950/20 overflow-hidden">
           <CapMeshSolutionAnimation />
 
           <motion.div
@@ -40,6 +57,24 @@ export default function Slide02Problem() {
             transition={{ delay: 0.3 }}
           >
             <p className="text-green-400 font-mono text-sm">목표: Cap Mesh 생성</p>
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none"
+            animate={{
+              opacity: [0, 0, 1, 1, 0, 0],
+              y: [10, 10, 0, 0, 10, 10]
+            }}
+            transition={{
+              duration: 7,
+              times: [0, 0.49, 0.55, 0.65, 0.70, 1],
+              repeat: Infinity,
+            }}
+          >
+            <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 backdrop-blur-sm border border-green-500/50 rounded-lg">
+              <span className="text-2xl">✓</span>
+              <span className="text-green-400 font-mono text-sm font-bold mt-1">해결</span>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -130,7 +165,7 @@ export default function Slide02Problem() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <p className="text-gray-300 font-mono text-xs italic leading-relaxed">
+          <p className="text-gray-400 font-mono text-lg italic leading-relaxed">
             "메쉬 절단은 Slicing만으로 끝나지 않는다.<br />
             절단면을 완벽하게 재구성해야만<br />
             진정한 완성이다."
@@ -145,13 +180,11 @@ export default function Slide02Problem() {
 function HoleProblemAnimation() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* 메쉬 (절반만) */}
       <motion.div
         className="absolute w-32 h-32 bg-purple-500 rounded-l-full"
         style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}
       />
 
-      {/* 구멍 표시 (점선) */}
       <motion.div
         className="absolute w-0.5 h-32 border-l-2 border-dashed border-red-500"
         animate={{
@@ -163,7 +196,6 @@ function HoleProblemAnimation() {
         }}
       />
 
-      {/* 내부 노출 표시 */}
       <motion.div
         className="absolute text-red-500 text-4xl"
         animate={{
@@ -185,13 +217,11 @@ function HoleProblemAnimation() {
 function CapMeshSolutionAnimation() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* 메쉬 (절반) */}
       <motion.div
         className="absolute w-32 h-32 bg-purple-500 rounded-l-full"
         style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}
       />
 
-      {/* Cap Mesh (절단면) */}
       <motion.div
         className="absolute w-16 h-32 bg-green-500/80"
         style={{ clipPath: 'polygon(0 0, 100% 20%, 100% 80%, 0 100%)' }}
@@ -207,7 +237,6 @@ function CapMeshSolutionAnimation() {
         }}
       />
 
-      {/* 삼각형 구조 표시 */}
       {[...Array(3)].map((_, i) => (
         <motion.div
           key={i}
@@ -229,7 +258,6 @@ function CapMeshSolutionAnimation() {
         />
       ))}
 
-      {/* 완성 체크 */}
       <motion.div
         className="absolute text-green-500 text-3xl"
         initial={{ opacity: 0, scale: 0 }}

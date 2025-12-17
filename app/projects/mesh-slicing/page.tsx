@@ -97,8 +97,7 @@ export default function MeshSlicingPage() {
           animate="center"
           exit="exit"
           transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 },
+            duration: 0 
           }}
           className="absolute inset-0 flex items-center justify-center"
         >

@@ -1,4 +1,3 @@
-// app/projects/mesh-creation/slides/Slide03Attempt1.tsx
 'use client';
 
 import { motion } from 'framer-motion';
@@ -11,7 +10,6 @@ export default function Slide03Attempt1() {
         <div className="relative w-full h-[80%] border-2 border-red-500/30 rounded-2xl bg-red-950/20 overflow-hidden">
           <PointCloudAnimation />
 
-          {/* 실패 표시 */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
             animate={{
@@ -33,7 +31,7 @@ export default function Slide03Attempt1() {
       </div>
 
       {/* 오른쪽: 설명 */}
-      <div className="w-[55%] h-full flex flex-col gap-4 overflow-y-auto pr-2 pb-8 custom-scrollbar">
+      <div className="w-[55%] h-full flex flex-col gap-5 overflow-y-auto pr-2 custom-scrollbar">
         <style jsx>{`
           .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -53,7 +51,6 @@ export default function Slide03Attempt1() {
             box-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
           }
         `}</style>
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -65,19 +62,16 @@ export default function Slide03Attempt1() {
           </p>
         </motion.div>
 
-        {/* 접근 방법 */}
         <motion.div
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.3 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">📍</div>
             <div>
-              <h3 className="text-base font-bold text-blue-400 font-mono mb-2">
-                초기 아이디어
-              </h3>
+              <h3 className="text-base font-bold text-blue-400 font-mono mb-2">초기 아이디어</h3>
               <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
                 <li>• Boundary 정점들을 점 구름으로 취급</li>
                 <li>• Delaunay Triangulation 적용</li>
@@ -87,66 +81,57 @@ export default function Slide03Attempt1() {
           </div>
         </motion.div>
 
-        {/* 시도한 알고리즘 */}
         <motion.div
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-purple-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: 0.5 }}
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">🔧</div>
+            <div className="text-2xl">🤔</div>
             <div>
-              <h3 className="text-base font-bold text-purple-400 font-mono mb-2">
-                시도한 알고리즘
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-purple-500/20 border border-purple-500 rounded text-purple-300 font-mono text-xs">
-                  Delaunay Triangulation
-                </span>
-                <span className="px-3 py-1 bg-purple-500/20 border border-purple-500 rounded text-purple-300 font-mono text-xs">
-                  Poisson Surface
-                </span>
-              </div>
+              <h3 className="text-base font-bold text-purple-400 font-mono mb-2">왜 이 방법을?</h3>
+              <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
+                <li>• <span className="text-purple-400">학술적으로 검증됨</span>: 논문에서 많이 사용</li>
+                <li>• <span className="text-purple-400">이론적으로 완벽</span>: 최적의 삼각형 보장</li>
+                <li>• 다른 대안: Ear Clipping (복잡), Sweep Line (2D 한정)</li>
+              </ul>
             </div>
           </div>
         </motion.div>
 
-        {/* 코드 예시 */}
         <motion.div
-          className="p-4 bg-gray-900/80 border border-blue-500/30 rounded-xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
+          className="p-4 bg-orange-950/30 border border-orange-700/50 rounded-xl"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.7 }}
         >
-          <p className="text-blue-400 font-mono text-xs mb-3">시도한 코드</p>
-          <pre className="bg-black/50 p-3 rounded text-[10px] overflow-x-auto">
-            <code className="text-gray-300 font-mono">
-{`// Point Cloud Reconstruction
-List<Vector3> points = ExtractBoundaryVertices();
-DelaunayTriangulation dt = new DelaunayTriangulation();
-dt.AddPoints(points);
-Mesh capMesh = dt.GenerateMesh();`}
-            </code>
-          </pre>
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">⚠️</div>
+            <div>
+              <h3 className="text-base font-bold text-orange-400 font-mono mb-2">대안들의 문제</h3>
+              <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
+                <li>• <span className="text-orange-400">Ear Clipping</span>: O(n²) 복잡도, 느림</li>
+                <li>• <span className="text-orange-400">Sweep Line</span>: 3D에서 작동 안 함</li>
+                <li>• <span className="text-orange-400">Constrained Delaunay</span>: 더 복잡함</li>
+              </ul>
+            </div>
+          </div>
         </motion.div>
 
-        {/* 실패 원인 */}
         <motion.div
           className="p-4 bg-red-950/30 border-2 border-red-500/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
+          transition={{ delay: 0.9 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">❌</div>
             <div>
-              <h3 className="text-base font-bold text-red-400 font-mono mb-2">
-                실패 원인
-              </h3>
+              <h3 className="text-base font-bold text-red-400 font-mono mb-2">실패 원인</h3>
               <ul className="space-y-1.5 text-gray-300 font-mono text-xs">
                 <li>• <span className="text-red-400 font-bold">너무 복잡함</span>: 구현 난이도 높음</li>
-                <li>• <span className="text-red-400 font-bold">성능 문제</span>: 계산 시간 ~50ms</li>
+                <li>• <span className="text-red-400 font-bold">성능 문제</span>: 이상한 메쉬의 삼각형 생성</li>
                 <li>• <span className="text-red-400 font-bold">실시간 불가능</span>: 목표 1ms 대비 50배 느림</li>
                 <li>• Unity에 라이브러리 부재</li>
               </ul>
@@ -154,100 +139,168 @@ Mesh capMesh = dt.GenerateMesh();`}
           </div>
         </motion.div>
 
-        {/* 결론 */}
         <motion.div
           className="p-4 bg-yellow-950/30 border-l-4 border-yellow-500 rounded-r-xl"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.1, duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
         >
-          <div className="flex items-start gap-3">
-            <div className="text-2xl">💡</div>
-            <div>
-              <h3 className="text-sm font-bold text-yellow-400 font-mono mb-2">
-                배운 점
-              </h3>
-              <p className="text-gray-300 font-mono text-xs leading-relaxed">
-                "학술적으로 완벽한 방법이<br />
-                실무에서 항상 좋은 건 아님<br />
-                → <span className="text-yellow-400 font-bold">더 단순한 접근 필요</span>"
-              </p>
-            </div>
-          </div>
+          <p className="text-gray-300 font-mono text-lg italic leading-relaxed">
+            "학술적으로 완벽한 방법이 실무에서 항상 좋은 건 아님 → <span className="text-yellow-400 font-bold">더 단순한 접근 필요</span>"
+          </p>
         </motion.div>
       </div>
     </div>
   );
 }
 
-// Point Cloud 애니메이션
 function PointCloudAnimation() {
+  const points = [...Array(12)].map((_, i) => {
+    const angle = (i * Math.PI * 2) / 12;
+    const radius = 60;
+    return {
+      x: 200 + Math.cos(angle) * radius,
+      y: 170 + Math.sin(angle) * radius,
+    };
+  });
+
+  const goodTriangles = [
+    [0, 1, 2],
+    [2, 3, 4],
+    [4, 5, 6],
+  ];
+
+  const badTriangles = [
+    [0, 4, 8],
+    [1, 6, 10],
+    [2, 7, 11],
+    [3, 8, 0],
+    [5, 10, 2],
+  ];
+
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Boundary 점들 (원형 배치) */}
-      {[...Array(12)].map((_, i) => {
-        const angle = (i * Math.PI * 2) / 12;
-        const radius = 60;
-        return (
-          <motion.div
-            key={`point-${i}`}
-            className="absolute w-3 h-3 bg-cyan-400 rounded-full"
-            style={{
-              left: `calc(50% + ${Math.cos(angle) * radius}px)`,
-              top: `calc(50% + ${Math.sin(angle) * radius}px)`,
-              boxShadow: '0 0 10px rgba(34, 211, 238, 0.8)',
-            }}
+      <svg className="absolute inset-0" viewBox="0 0 400 400">
+        {goodTriangles.map((tri, i) => (
+          <motion.path
+            key={`good-${i}`}
+            d={`M ${points[tri[0]].x} ${points[tri[0]].y} L ${points[tri[1]].x} ${points[tri[1]].y} L ${points[tri[2]].x} ${points[tri[2]].y} Z`}
+            fill="rgba(34, 197, 94, 0.3)"
+            stroke="#22c55e"
+            strokeWidth="1"
+            initial={{ opacity: 0 }}
             animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.6, 1, 0.6],
+              opacity: [0, 0, 0.3, 0.3, 0.3, 0, 0, 0],
             }}
             transition={{
-              duration: 2,
-              delay: i * 0.1,
+              duration: 8,
+              times: [0, 0.125 + i * 0.1, 0.15 + i * 0.1, 0.625, 0.75, 0.875, 0.9, 1],
               repeat: Infinity,
             }}
           />
-        );
-      })}
+        ))}
 
-      {/* Delaunay 삼각형들 (복잡하게) */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={`tri-${i}`}
-          className="absolute border border-purple-400/30"
-          style={{
-            width: 40 + Math.random() * 20,
-            height: 40 + Math.random() * 20,
-            left: `${40 + Math.random() * 20}%`,
-            top: `${40 + Math.random() * 20}%`,
-          }}
+        {badTriangles.map((tri, i) => (
+          <motion.path
+            key={`bad-${i}`}
+            d={`M ${points[tri[0]].x} ${points[tri[0]].y} L ${points[tri[1]].x} ${points[tri[1]].y} L ${points[tri[2]].x} ${points[tri[2]].y} Z`}
+            stroke="#ef4444"
+            strokeWidth="2"
+            initial={{ opacity: 0 }}
+            animate={{
+              fill: [
+                'rgba(234, 179, 8, 0)',
+                'rgba(234, 179, 8, 0)',
+                'rgba(234, 179, 8, 0.3)',
+                'rgba(249, 115, 22, 0.35)',
+                'rgba(239, 68, 68, 0.4)',
+                'rgba(239, 68, 68, 0.4)',
+                'rgba(239, 68, 68, 0.6)',
+                'rgba(239, 68, 68, 0)',
+              ],
+              opacity: [0, 0, 0, 0.4, 0.6, 0.4, 0.6, 0],
+            }}
+            transition={{
+              duration: 8,
+              times: [0, 0.375 + i * 0.08, 0.4 + i * 0.08, 0.5, 0.625, 0.75, 0.875, 1],
+              repeat: Infinity,
+            }}
+          />
+        ))}
+
+        {points.map((p, i) => (
+          <motion.circle
+            key={`point-${i}`}
+            cx={p.x}
+            cy={p.y}
+            r="6"
+            style={{ filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.8))' }}
+            animate={{
+              fill: [
+                'rgb(34, 211, 238)',
+                'rgb(34, 211, 238)',
+                'rgb(34, 211, 238)',
+                'rgb(34, 211, 238)',
+                'rgb(34, 211, 238)',
+                'rgb(34, 211, 238)',
+                'rgb(239, 68, 68)',
+                'rgb(239, 68, 68)',
+              ],
+              r: [6, 8, 6],
+            }}
+            transition={{
+              fill: {
+                duration: 8,
+                times: [0, 0.5, 0.625, 0.75, 0.8, 0.875, 0.9, 1],
+                repeat: Infinity,
+              },
+              r: {
+                duration: 2,
+                repeat: Infinity,
+              },
+            }}
+          />
+        ))}
+
+        <motion.text
+          x="200"
+          y="300"
+          textAnchor="middle"
+          fill="#f87171"
+          fontSize="12"
+          fontFamily="monospace"
           animate={{
-            opacity: [0, 0, 0.5, 0.5, 0],
-            rotate: [0, 0, 360, 360, 0],
+            opacity: [0, 0, 1, 1, 1, 0, 0, 0],
           }}
           transition={{
             duration: 8,
-            times: [0, 0.3, 0.4, 0.6, 1],
-            delay: i * 0.1,
+            times: [0, 0.125, 0.15, 0.5, 0.625, 0.75, 0.8, 1],
             repeat: Infinity,
           }}
-        />
-      ))}
+        >
+          Processing: ~50ms
+        </motion.text>
 
-      {/* 처리 시간 경고 */}
-      <motion.div
-        className="absolute bottom-8 px-4 py-2 bg-red-500/20 backdrop-blur-sm border border-red-500/50 rounded-lg"
-        animate={{
-          opacity: [0, 0, 1, 1, 0],
-        }}
-        transition={{
-          duration: 8,
-          times: [0, 0.4, 0.5, 0.65, 1],
-          repeat: Infinity,
-        }}
-      >
-        <span className="text-red-400 font-mono text-xs">Processing: ~50ms</span>
-      </motion.div>
+        <motion.text
+          x="200"
+          y="300"
+          textAnchor="middle"
+          fill="#f87171"
+          fontSize="12"
+          fontFamily="monospace"
+          animate={{
+            opacity: [0, 0, 0, 0, 0, 0, 1, 1, 0],
+          }}
+          transition={{
+            duration: 8,
+            times: [0, 0.625, 0.7, 0.72, 0.75, 0.8, 0.82, 0.875, 1],
+            repeat: Infinity,
+          }}
+        >
+          Invalid Triangles Detected
+        </motion.text>
+
+      </svg>
     </div>
   );
 }

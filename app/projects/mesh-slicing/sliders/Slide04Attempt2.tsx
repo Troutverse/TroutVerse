@@ -83,34 +83,57 @@ export default function Slide04Attempt2() {
           </h2>
         </motion.div>
 
-        {/* 접근 방법 */}
+        {/* 왜 이 방법? - NEW */}
         <motion.div
-          className="p-4 bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl"
+          className="p-4 bg-blue-950/30 backdrop-blur-sm border border-blue-500/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">📍</div>
+            <div className="text-2xl">🤔</div>
             <div>
               <h3 className="text-base font-bold text-blue-400 font-mono mb-2">
-                개선된 아이디어
+                왜 Edge로 전환?
               </h3>
               <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
-                <li>• Ray와 Edge의 직접 교차점 감지 불가능</li>
-                <li>• 해결: 거리 범위 기반 감지 (Threshold: 0.1cm)</li>
-                <li>• Edge 범위 내 → 점 저장 → List 생성</li>
+                <li>• Ray는 "점"만 찾음 → 구조 정보 부족</li>
+                <li>• Edge는 "선" 정보 제공 → 메쉬 연결 관계 파악 가능</li>
+                <li>• 삼각형의 구성 요소에 더 가까움</li>
+                <li>• 교차점 수 감소 기대</li>
               </ul>
             </div>
           </div>
         </motion.div>
 
-        {/* 구현 로직 */}
+        {/* 배제한 대안들 - NEW */}
+        <motion.div
+          className="p-4 bg-gray-900/70 backdrop-blur-sm border border-gray-600/50 rounded-xl"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.25, duration: 0.6 }}
+        >
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">🚫</div>
+            <div>
+              <h3 className="text-base font-bold text-gray-400 font-mono mb-2">
+                배제한 대안들
+              </h3>
+              <ul className="space-y-1.5 text-gray-500 font-mono text-xs">
+                <li>• <span className="text-gray-400">Ray 방식 개선</span>: 근본적 한계 존재</li>
+                <li>• <span className="text-gray-400">Vertex-based</span>: 점만으로는 정보 부족</li>
+                <li>• <span className="text-gray-400">Triangle 직접 접근</span>: 너무 복잡해 보임 (당시 판단)</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 구현 방식 */}
         <motion.div
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-purple-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">🔧</div>
@@ -134,7 +157,7 @@ export default function Slide04Attempt2() {
           className="p-4 bg-green-950/30 border border-green-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">✓</div>
@@ -156,7 +179,7 @@ export default function Slide04Attempt2() {
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-orange-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">⚠️</div>
@@ -178,7 +201,7 @@ export default function Slide04Attempt2() {
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-orange-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">❌</div>
@@ -200,7 +223,7 @@ export default function Slide04Attempt2() {
           className="p-4 bg-red-950/30 border-2 border-red-500/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
+          transition={{ delay: 1.1, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">🔥</div>
@@ -222,7 +245,7 @@ export default function Slide04Attempt2() {
           className="p-4 bg-yellow-950/30 border-l-4 border-yellow-500 rounded-r-xl"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
+          transition={{ delay: 1.3, duration: 0.8 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">💡</div>

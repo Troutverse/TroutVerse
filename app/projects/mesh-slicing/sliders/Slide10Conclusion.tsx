@@ -116,7 +116,7 @@ export default function Slide10Conclusion() {
             사용 기술
           </h3>
           <div className="flex flex-wrap gap-3">
-            {['Unity', 'DFS'].map((tech, i) => (
+            {['Unity', 'DFS', "C#", "Meta Quest",].map((tech, i) => (
               <motion.span
                 key={tech}
                 className="px-4 py-2 bg-blue-500/20 border border-blue-500/50 rounded-lg text-blue-300 font-mono text-sm"

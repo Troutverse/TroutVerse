@@ -133,6 +133,52 @@ export default function Slide06Attempt4() {
           </h2>
         </motion.div>
 
+        {/* 왜 이 방법? - NEW */}
+        <motion.div
+          className="p-4 bg-blue-950/30 backdrop-blur-sm border border-blue-500/50 rounded-xl"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">🤔</div>
+            <div>
+              <h3 className="text-base font-bold text-blue-400 font-mono mb-2">
+                왜 Transform이 필요?
+              </h3>
+              <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
+                <li>• World vs Local 좌표계 혼동 문제 발견</li>
+                <li>• Unity Transform의 기본 개념</li>
+                <li>• 3D 공간 변환의 기초 - 회전, 스케일, 위치</li>
+                <li>• 모든 오브젝트는 부모의 변환을 상속받음</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 배제한 대안들 - NEW */}
+        <motion.div
+          className="p-4 bg-gray-900/70 backdrop-blur-sm border border-gray-600/50 rounded-xl"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.25, duration: 0.6 }}
+        >
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">🚫</div>
+            <div>
+              <h3 className="text-base font-bold text-gray-400 font-mono mb-2">
+                배제한 대안들
+              </h3>
+              <ul className="space-y-1.5 text-gray-500 font-mono text-xs">
+                <li>• <span className="text-gray-400">수동 변환 계산</span>: 실수 가능성 높음, 유지보수 어려움</li>
+                <li>• <span className="text-gray-400">Offset 보정</span>: 임시방편, 근본 해결 안됨</li>
+                <li>• <span className="text-gray-400">Ray를 Local로</span>: 더 복잡하고 비효율적</li>
+                <li>• <span className="text-gray-400">Matrix 직접 조작</span>: Transform API가 더 안전</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
         {/* 문제 인식 */}
         <motion.div
           className="p-4 bg-red-950/30 border border-red-700/50 rounded-xl"

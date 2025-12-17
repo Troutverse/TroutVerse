@@ -48,29 +48,29 @@ export default function Slide03Attempt1() {
       </div>
 
       {/* 오른쪽: 설명 */}
-      {/* 오른쪽: 설명 */}
       <div className="w-[55%] h-full flex flex-col gap-4 overflow-y-auto pr-2 pb-24 custom-scrollbar">
         {/* 사이버펑크 스타일 스크롤바 */}
         <style jsx>{`
-                  .custom-scrollbar::-webkit-scrollbar {
-                    width: 6px;
-                  }
-                  .custom-scrollbar::-webkit-scrollbar-track {
-                    background: rgba(6, 182, 212, 0.1);
-                    border-radius: 10px;
-                    margin: 8px 0;
-                  }
-                  .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: linear-gradient(180deg, #06b6d4 0%, #0891b2 100%);
-                    border-radius: 10px;
-                    box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
-                  }
-                  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: linear-gradient(180deg, #22d3ee 0%, #06b6d4 100%);
-                    box-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
-                  }
-          `}</style>
-          <motion.div
+          .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 10px;
+            margin: 8px 0;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #06b6d4 0%, #0891b2 100%);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #22d3ee 0%, #06b6d4 100%);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
+          }
+        `}</style>
+
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -80,10 +80,55 @@ export default function Slide03Attempt1() {
               Ray-based Intersection Detection
             </div>
           </h2>
-
         </motion.div>
 
-        {/* 접근 방법 */}
+        {/* 왜 이 방법? - NEW */}
+        <motion.div
+          className="p-5 bg-blue-950/30 backdrop-blur-sm border border-blue-500/50 rounded-xl"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">🤔</div>
+            <div>
+              <h3 className="text-lg font-bold text-blue-400 font-mono mb-2">
+                왜 Ray 방식을?
+              </h3>
+              <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
+                <li>• Unity의 Raycast 시스템에 익숙함</li>
+                <li>• 직관적인 접근: "칼이 지나간 경로를 따라가면 되겠다"</li>
+                <li>• Easy Slice 등 기존 Asset들도 유사한 방식 사용</li>
+                <li>• 구현이 간단해 보임 (초기 판단)</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 배제한 대안들 - NEW */}
+        <motion.div
+          className="p-5 bg-gray-900/70 backdrop-blur-sm border border-gray-600/50 rounded-xl"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.25, duration: 0.6 }}
+        >
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">🚫</div>
+            <div>
+              <h3 className="text-lg font-bold text-gray-400 font-mono mb-2">
+                배제한 대안들
+              </h3>
+              <ul className="space-y-1.5 text-gray-500 font-mono text-xs">
+                <li>• <span className="text-gray-400">Voxel 기반</span>: 메모리 과다 사용, 성능 저하 예상</li>
+                <li>• <span className="text-gray-400">CSG (Constructive Solid Geometry)</span>: 복잡도 높음, 실시간 부적합</li>
+                <li>• <span className="text-gray-400">Physics-based Cut</span>: Unity에 기본 지원 없음</li>
+                <li>• <span className="text-gray-400">Marching Cubes</span>: PBD Soft body와 결합 시 계산량 폭증</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 구현 방식 */}
         <motion.div
           className="p-5 bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
@@ -93,8 +138,8 @@ export default function Slide03Attempt1() {
           <div className="flex items-start gap-3">
             <div className="text-2xl">📍</div>
             <div>
-              <h3 className="text-lg font-bold text-blue-400 font-mono mb-2">
-                초기 아이디어
+              <h3 className="text-lg font-bold text-purple-400 font-mono mb-2">
+                구현 방식
               </h3>
               <ul className="space-y-1.5 text-gray-400 font-mono text-sm">
                 <li>• 칼날 이동 경로를 따라 Ray 발사</li>

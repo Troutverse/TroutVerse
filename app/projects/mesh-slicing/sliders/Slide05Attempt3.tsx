@@ -83,35 +83,58 @@ export default function Slide05Attempt3() {
           </h2>
         </motion.div>
 
-        {/* 접근 방법 */}
+        {/* 왜 이 방법? - NEW */}
         <motion.div
-          className="p-4 bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl"
+          className="p-4 bg-blue-950/30 backdrop-blur-sm border border-blue-500/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">📍</div>
+            <div className="text-2xl">🤔</div>
             <div>
               <h3 className="text-base font-bold text-blue-400 font-mono mb-2">
-                새로운 접근
+                왜 Triangle로?
               </h3>
               <ul className="space-y-1.5 text-gray-400 font-mono text-xs">
-                <li>• Edge가 아닌 Triangle(삼각형) 단위로 검사</li>
-                <li>• Ray와 교차하는 삼각형을 탐색</li>
-                <li>• 교차된 삼각형들을 경계(Boundary)로 설정</li>
-                <li>• 경계를 기준으로 연결된 삼각형들을 그룹화</li>
+                <li>• Edge = "선" → Triangle = "면"</li>
+                <li>• 메쉬의 최소 구성 단위 (Unity의 기본 단위)</li>
+                <li>• 연결 관계 완벽 파악 가능 (Topology 정보 포함)</li>
+                <li>• 면 단위 그룹화로 완전한 분리 가능</li>
               </ul>
             </div>
           </div>
         </motion.div>
 
-        {/* 구현 로직 */}
+        {/* 배제한 대안들 - NEW */}
+        <motion.div
+          className="p-4 bg-gray-900/70 backdrop-blur-sm border border-gray-600/50 rounded-xl"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.25, duration: 0.6 }}
+        >
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">🚫</div>
+            <div>
+              <h3 className="text-base font-bold text-gray-400 font-mono mb-2">
+                배제한 대안들
+              </h3>
+              <ul className="space-y-1.5 text-gray-500 font-mono text-xs">
+                <li>• <span className="text-gray-400">Edge 방식 개선</span>: 면 정보 없이는 한계</li>
+                <li>• <span className="text-gray-400">Quad-based</span>: Unity는 Triangle만 지원</li>
+                <li>• <span className="text-gray-400">Vertex 보간법</span>: 정확도 떨어지고 구멍 발생</li>
+                <li>• <span className="text-gray-400">Half-edge 구조</span>: 오버엔지니어링, 구현 복잡</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 구현 방식 */}
         <motion.div
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-purple-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">🔧</div>
@@ -135,7 +158,7 @@ export default function Slide05Attempt3() {
           className="p-4 bg-green-950/30 border-2 border-green-500/70 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">✓✓</div>
@@ -145,8 +168,8 @@ export default function Slide05Attempt3() {
               </h3>
               <ul className="space-y-1.5 text-gray-300 font-mono text-xs">
                 <li>• <span className="text-green-400 font-bold">드디어 메쉬 분리 성공!</span></li>
-                <li>• 절개선에 따른 메쉬를 나누는 것이 절개선이 수직이 아니고 곡선일 경우 메쉬를 분리할 수 없었음</li>
-                <li>• Triangle 단위 접근이 올바른 방향</li>
+                <li>• 교차 삼각형을 경계로 명확한 그룹 구분</li>
+                <li>• Triangle 단위 접근이 올바른 방향임을 확인</li>
                 <li>• 구조적으로 완전한 접근</li>
               </ul>
             </div>
@@ -158,7 +181,7 @@ export default function Slide05Attempt3() {
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-red-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">⚠️</div>
@@ -181,7 +204,7 @@ export default function Slide05Attempt3() {
           className="p-4 bg-gray-900/50 backdrop-blur-sm border border-orange-700/50 rounded-xl"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">⚠️</div>
@@ -204,7 +227,7 @@ export default function Slide05Attempt3() {
           className="p-4 bg-green-950/30 border-l-4 border-green-500 rounded-r-xl"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.3, duration: 0.8 }}
+          transition={{ delay: 1.1, duration: 0.8 }}
         >
           <div className="flex items-start gap-3">
             <div className="text-2xl">💡</div>
@@ -225,18 +248,18 @@ export default function Slide05Attempt3() {
   );
 }
 
-// Triangle Detection 애니메이션 - 개선된 버전
+// Triangle Detection 애니메이션
 function TriangleDetectionAnimation() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       {/* 메쉬 배경 */}
       <div className="absolute w-40 h-40 bg-purple-500/20 rounded-full blur-xl" />
 
-      {/* 삼각형 와이어프레임 (12개로 증가) */}
+      {/* 삼각형 와이어프레임 (12개) */}
       {[...Array(12)].map((_, i) => {
         const angle = (i * Math.PI * 2) / 12;
         const radius = 80;
-        const isCrossed = i >= 4 && i <= 7; // 4개가 교차됨
+        const isCrossed = i >= 4 && i <= 7;
         
         return (
           <motion.div
@@ -254,13 +277,13 @@ function TriangleDetectionAnimation() {
             }}
             animate={{
               borderBottomColor: [
-                'rgba(156, 163, 175, 0.3)',  // 초기 (회색)
-                'rgba(156, 163, 175, 0.3)',  // 스캔 전
-                isCrossed ? 'rgba(239, 68, 68, 0.8)' : 'rgba(156, 163, 175, 0.3)',  // 스캔 중 (교차된 것은 빨강)
-                isCrossed ? 'rgba(239, 68, 68, 0.8)' : 'rgba(156, 163, 175, 0.3)',  // 유지
-                isCrossed ? 'rgba(239, 68, 68, 0.5)' : (i < 4 ? 'rgba(74, 222, 128, 0.8)' : 'rgba(59, 130, 246, 0.8)'),  // 그룹화 (Group A: 초록, Group B: 파랑, 경계: 빨강)
-                isCrossed ? 'rgba(239, 68, 68, 0.5)' : (i < 4 ? 'rgba(74, 222, 128, 0.8)' : 'rgba(59, 130, 246, 0.8)'),  // 유지
-                'rgba(156, 163, 175, 0.3)',  // 리셋
+                'rgba(156, 163, 175, 0.3)',
+                'rgba(156, 163, 175, 0.3)',
+                isCrossed ? 'rgba(239, 68, 68, 0.8)' : 'rgba(156, 163, 175, 0.3)',
+                isCrossed ? 'rgba(239, 68, 68, 0.8)' : 'rgba(156, 163, 175, 0.3)',
+                isCrossed ? 'rgba(239, 68, 68, 0.5)' : (i < 4 ? 'rgba(74, 222, 128, 0.8)' : 'rgba(59, 130, 246, 0.8)'),
+                isCrossed ? 'rgba(239, 68, 68, 0.5)' : (i < 4 ? 'rgba(74, 222, 128, 0.8)' : 'rgba(59, 130, 246, 0.8)'),
+                'rgba(156, 163, 175, 0.3)',
               ],
             }}
             transition={{

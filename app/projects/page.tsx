@@ -4,17 +4,17 @@ import { ProjectCard3D } from '@/components/ProjectCard3D';
 import { RetroBackgrounds } from '@/components/Retrobackgrounds';
 
 export default function ProjectsPage() {
-  // Mesh Slice 프로젝트를 찾거나 새로 생성
+  // Mesh Slice 프로젝트
   const meshSliceProject = {
     title: 'Mesh Slice',
     slug: 'mesh-slicing',
     date: '2025.12.10',
     description: '오브젝트의 자연스러운 메쉬 절단 유니티 프로젝트',
-    thumbnail: '/mesh-slice-thumb.jpg', // 더미
+    thumbnail: '/mesh-slice-thumb.jpg',
     type: '3d-animation' as const
   };
 
-   // Mesh Creation 프로젝트 추가
+  // Mesh Creation 프로젝트
   const meshCreationProject = {
     title: 'Mesh Creation',
     slug: 'mesh-creation',
@@ -24,8 +24,28 @@ export default function ProjectsPage() {
     type: '3d-animation' as const
   };
 
-  // 프로젝트 배열에 추가
-  const allProjects = [meshSliceProject, meshCreationProject];
+  // Matchmaking System 프로젝트
+  const matchmakingProject = {
+    title: 'Matchmaking System',
+    slug: 'matchmaking-system',
+    date: '', // TODO: 날짜 입력
+    description: 'SignalR 기반 실시간 4인 매칭 시스템',
+    thumbnail: '/matchmaking-thumb.jpg',
+    type: '3d-animation' as const
+  };
+
+  // PBD Softbody 프로젝트
+  const pbdSoftbodyProject = {
+    title: 'PBD Soft Body',
+    slug: 'pbd-softbody',
+    date: '', // TODO: 날짜 입력
+    description: 'VR 수술 시뮬레이션을 위한 실시간 소프트바디 물리 엔진',
+    thumbnail: '/pbd-softbody-thumb.jpg',
+    type: '3d-animation' as const
+  };
+
+  // 프로젝트 배열
+  const allProjects = [meshSliceProject, meshCreationProject, matchmakingProject, pbdSoftbodyProject];
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">

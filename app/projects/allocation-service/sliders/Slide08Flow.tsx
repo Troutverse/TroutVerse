@@ -313,7 +313,6 @@ function Message({ from, to, top, label, delay, color = 'cyan' }: {
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: 1, opacity: 1 }}
         transition={{ delay, duration: 0.4 }}
-        style={{ transformOrigin: 'left' }}
       />
       <motion.div
         className={`absolute ${colorMap[color]} font-mono text-[9px]`}
@@ -352,7 +351,6 @@ function MessageReturn({ from, to, top, label, delay }: {
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: 1, opacity: 1 }}
         transition={{ delay, duration: 0.4 }}
-        style={{ transformOrigin: 'left' }}
       />
       <motion.div
         className="absolute text-gray-400 font-mono text-[9px]"

@@ -6,17 +6,11 @@ import ThreeScene from '@/components/ThreeScene';
 export default function Slide01Hero() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
-      {/* 3D Scene - 배경 (더 선명하게) */}
       <div className="absolute inset-0 opacity-50">
         <ThreeScene type="knife" />
       </div>
-
-      {/* 그라데이션 오버레이 */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70" />
-
-      {/* 콘텐츠 */}
       <div className="relative z-10 flex flex-col items-center gap-8 px-4">
-        {/* 상단 태그 */}
         <motion.div
           className="px-4 py-2 border border-green-400/30 rounded-full bg-black/30 backdrop-blur-sm"
           initial={{ opacity: 0, y: -20 }}

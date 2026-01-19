@@ -5,67 +5,55 @@ import { ProjectCard3D } from '@/components/ProjectCard3D';
 import { RetroBackgrounds } from '@/components/Retrobackgrounds';
 
 export default function ProjectsPage() {
-  // Mesh Slice 프로젝트
+
   const meshSliceProject = {
     title: 'Mesh Slice',
     slug: 'mesh-slicing',
-    date: '2024.12',
+    date: '2025.12',
     description: '오브젝트의 자연스러운 메쉬 절단 유니티 프로젝트',
-    thumbnail: '/mesh-slice-thumb.jpg',
     type: '3d-animation' as const
   };
 
-  // Mesh Creation 프로젝트
   const meshCreationProject = {
     title: 'Mesh Creation',
     slug: 'mesh-creation',
-    date: '2024.09 - 2024.11',
+    date: '2025.12',
     description: 'Mesh 생성 알고리즘',
-    thumbnail: '/mesh-creation-thumb.jpg',
     type: '3d-animation' as const
   };
 
-  // Matchmaking System 프로젝트
   const matchmakingProject = {
     title: 'Matchmaking System',
     slug: 'matchmaking-system',
-    date: '2024.12',
+    date: '2026.01',
     description: 'SignalR 기반 실시간 4인 매칭 시스템',
-    thumbnail: '/matchmaking-thumb.jpg',
     type: '3d-animation' as const
   };
 
-  // PBD Softbody 프로젝트
   const pbdSoftbodyProject = {
     title: 'PBD Soft Body',
     slug: 'pbd-softbody',
-    date: '2024.10 - 2024.11',
+    date: '2025.11',
     description: 'VR 수술 시뮬레이션을 위한 실시간 소프트바디 물리 엔진',
-    thumbnail: '/pbd-softbody-thumb.jpg',
     type: '3d-animation' as const
   };
 
-  // Login Service 프로젝트 (NEW)
   const loginServiceProject = {
     title: 'Login Service',
     slug: 'login-service',
-    date: '2024.12',
-    description: 'PlayFab 기반 사용자 인증 및 세션 관리 시스템',
-    thumbnail: '/login-service-thumb.jpg',
+    date: '2026.01',
+    description: 'GRPC 기반 사용자 인증 및 세션 관리 시스템',
     type: '3d-animation' as const
   };
 
-  // Allocation Service 프로젝트 (NEW)
   const allocationServiceProject = {
     title: 'Allocation Service',
     slug: 'allocation-service',
-    date: '2025.01',
+    date: '2026.01',
     description: 'PlayFab Multiplayer Server 자동 할당 및 관리',
-    thumbnail: '/allocation-service-thumb.jpg',
     type: '3d-animation' as const
   };
 
-  // 프로젝트 배열
   const allProjects = [
     meshSliceProject, 
     meshCreationProject, 
@@ -77,30 +65,12 @@ export default function ProjectsPage() {
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
-      {/* 레트로 배경 */}
       <RetroBackgrounds />
       
-      {/* 비네팅 효과 */}
       <div className="fixed inset-0 bg-gradient-radial from-transparent via-transparent to-black/50 pointer-events-none z-10" />
       
-      {/* 메인 컨텐츠 */}
       <main className="relative z-20 w-full px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* 헤더 섹션 */}
-          <div className="mb-16 text-center relative">
-            <p className="mt-6 text-cyan-300/70 font-mono text-sm tracking-widest">
-              {'>'} SYSTEM_ARCHIVE.INITIALIZE ()
-              <span className="inline-block w-2 h-4 bg-cyan-400 ml-1 animate-pulse"></span>
-            </p>
-            
-            <div className="mt-8 flex justify-center items-center gap-4">
-              <div className="h-px w-20 bg-gradient-to-r from-transparent to-cyan-400"></div>
-              <div className="w-2 h-2 border border-cyan-400 rotate-45"></div>
-              <div className="h-px w-20 bg-gradient-to-l from-transparent to-cyan-400"></div>
-            </div>
-          </div>
-
-          {/* 프로젝트 그리드 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {allProjects.map((project, index) => (
               <div 
@@ -123,21 +93,6 @@ export default function ProjectsPage() {
             ))}
           </div>
 
-          {/* 하단 상태바 */}
-          <div className="mt-16 border-t border-cyan-500/30 pt-8">
-            <div className="flex justify-between items-center font-mono text-xs text-cyan-400/50">
-              <div>
-                {'>'} TOTAL_PROJECTS: {allProjects.length}
-              </div>
-              <div>
-                {'>'} STATUS: ONLINE
-                <span className="inline-block w-2 h-2 bg-green-400 rounded-full ml-2 animate-pulse"></span>
-              </div>
-              <div>
-                {'>'} SYSTEM_VERSION: 2.0.22
-              </div>
-            </div>
-          </div>
         </div>
       </main>
 

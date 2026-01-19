@@ -1,9 +1,9 @@
+// ProjectBackground.tsx
 'use client';
 
-export default function RetroBackground() {
+export default function ProjectBackground() {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
-      {/* 도트 패턴 */}
       <div 
         className="absolute inset-0 opacity-30"
         style={{
@@ -17,7 +17,6 @@ export default function RetroBackground() {
         }}
       />
       
-      {/* 그라디언트 오버레이 */}
       <div 
         className="absolute inset-0"
         style={{

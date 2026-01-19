@@ -13,7 +13,7 @@ import Slide08Conclusion from './slides/Slide08Conclusion';
 import Slide09Demo from './slides/Slide09Demo';
 
 import Navigation from '../../../components/Navigation';
-import RetroBackground from '../../../components/RetroBackground';
+import ProjectBackground from '../../../components/ProjectBackground';
 
 const slides = [
   Slide01Hero,
@@ -80,7 +80,7 @@ export default function MeshCreationPage() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
-      <RetroBackground />
+      <ProjectBackground />
       
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div

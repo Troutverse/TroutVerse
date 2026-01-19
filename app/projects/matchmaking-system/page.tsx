@@ -16,7 +16,7 @@ import Slide11TechnicalStack from './sliders/Slide11TechnicalStack';
 import Slide12Conclusion from './sliders/Slide12Conclusion';
 
 import Navigation from '../../../components/Navigation';
-import RetroBackground from '../../../components/RetroBackground';
+import ProjectBackground from '../../../components/ProjectBackground';
 
 const slides = [
   Slide01Hero,
@@ -86,7 +86,7 @@ export default function MatchmakingSystemPage() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
-      <RetroBackground />
+      <ProjectBackground />
 
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div

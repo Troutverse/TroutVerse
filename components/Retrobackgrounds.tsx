@@ -19,7 +19,6 @@ export function RetroBackgrounds() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // 별 (작은 점들)
     class Star {
       x: number;
       y: number;
@@ -51,10 +50,8 @@ export function RetroBackgrounds() {
       }
     }
 
-    // 행성 타입 정의
     type PlanetType = 'earth' | 'mars' | 'gas-giant' | 'ice' | 'lava' | 'ringed';
 
-    // 행성
     class Planet {
       x: number;
       y: number;
@@ -76,14 +73,13 @@ export function RetroBackgrounds() {
         this.x = Math.random() * (canvas?.width || 1000);
         this.y = Math.random() * (canvas?.height || 1000);
         
-        // 다양한 크기 (10 ~ 80px)
         const sizeVariation = Math.random();
         if (sizeVariation < 0.3) {
-          this.size = Math.random() * 15 + 10; // 작은 행성
+          this.size = Math.random() * 15 + 10; 
         } else if (sizeVariation < 0.7) {
-          this.size = Math.random() * 25 + 25; // 중간 행성
+          this.size = Math.random() * 25 + 25; 
         } else {
-          this.size = Math.random() * 30 + 50; // 큰 행성
+          this.size = Math.random() * 30 + 50; 
         }
         
         this.speedX = (Math.random() - 0.5) * 0.3;
@@ -91,12 +87,10 @@ export function RetroBackgrounds() {
         this.rotation = 0;
         this.rotationSpeed = (Math.random() - 0.5) * 0.01;
 
-        // 행성 타입 랜덤 선택
         const types: PlanetType[] = ['earth', 'mars', 'gas-giant', 'ice', 'lava', 'ringed'];
         this.type = types[Math.floor(Math.random() * types.length)];
         this.hasRings = this.type === 'ringed' || Math.random() > 0.8;
 
-        // 타입별 색상 설정
         this.colors = this.getPlanetColors(this.type);
       }
 
@@ -167,12 +161,10 @@ export function RetroBackgrounds() {
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
 
-        // 링 그리기 (뒤쪽)
         if (this.hasRings) {
           this.drawRings(true);
         }
 
-        // 대기 효과
         if (this.colors.atmosphere) {
           const atmosphereGradient = ctx.createRadialGradient(0, 0, this.size * 0.8, 0, 0, this.size * 1.3);
           atmosphereGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
@@ -183,13 +175,11 @@ export function RetroBackgrounds() {
           ctx.fill();
         }
 
-        // 행성 본체 - 그라데이션
         const gradient = ctx.createRadialGradient(
           -this.size * 0.3, -this.size * 0.3, this.size * 0.1,
           0, 0, this.size
         );
 
-        // 멀티 컬러 그라데이션
         gradient.addColorStop(0, this.colors.highlight);
 
         ctx.fillStyle = gradient;
@@ -197,7 +187,6 @@ export function RetroBackgrounds() {
         ctx.arc(0, 0, this.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // 그림자 효과 (오른쪽 아래)
         const shadowGradient = ctx.createRadialGradient(
           this.size * 0.3, this.size * 0.3, 0,
           this.size * 0.3, this.size * 0.3, this.size * 1.2
@@ -210,7 +199,6 @@ export function RetroBackgrounds() {
         ctx.arc(0, 0, this.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // 반사광 (왼쪽 위)
         const highlightGradient = ctx.createRadialGradient(
           -this.size * 0.4, -this.size * 0.4, 0,
           -this.size * 0.4, -this.size * 0.4, this.size * 0.5
@@ -223,7 +211,6 @@ export function RetroBackgrounds() {
         ctx.arc(0, 0, this.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // 링 그리기 (앞쪽)
         if (this.hasRings) {
           this.drawRings(false);
         }
@@ -240,10 +227,8 @@ export function RetroBackgrounds() {
 
         ctx.save();
         
-        // 링을 기울임 (3D 효과)
         ctx.scale(1, 0.3);
 
-        // 뒤쪽 링 (어두움)
         if (isBack) {
           ctx.globalAlpha = 0.4;
           const ringGradient = ctx.createRadialGradient(0, 0, ringInner, 0, 0, ringOuter);
@@ -259,7 +244,6 @@ export function RetroBackgrounds() {
           ctx.closePath();
           ctx.fill();
         } else {
-          // 앞쪽 링 (밝음)
           ctx.globalAlpha = 0.6;
           const ringGradient = ctx.createRadialGradient(0, 0, ringInner, 0, 0, ringOuter);
           ringGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
@@ -274,7 +258,6 @@ export function RetroBackgrounds() {
           ctx.closePath();
           ctx.fill();
 
-          // 링 밴드 (세부 디테일)
           ctx.globalAlpha = 0.3;
           for (let i = 0; i < 3; i++) {
             const bandRadius = ringInner + (ringThickness / 3) * i;
@@ -291,7 +274,6 @@ export function RetroBackgrounds() {
       }
     }
 
-    // 우주선
     class Spaceship {
       x: number;
       y: number;
@@ -345,7 +327,6 @@ export function RetroBackgrounds() {
       draw() {
         if (!ctx) return;
 
-        // 궤적 그리기
         this.trailPositions.forEach((pos, i) => {
           ctx.fillStyle = `rgba(0, 255, 255, ${pos.opacity * 0.3})`;
           const trailSize = this.size * 0.3 * pos.opacity;
@@ -358,7 +339,6 @@ export function RetroBackgrounds() {
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
 
-        // 우주선 본체
         ctx.fillStyle = 'rgba(200, 200, 255, 0.9)';
         ctx.beginPath();
         ctx.moveTo(this.size, 0);
@@ -371,7 +351,6 @@ export function RetroBackgrounds() {
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // 엔진 불빛
         ctx.fillStyle = 'rgba(0, 255, 255, 0.6)';
         ctx.beginPath();
         ctx.arc(-this.size * 0.7, 0, this.size * 0.3, 0, Math.PI * 2);
@@ -381,7 +360,6 @@ export function RetroBackgrounds() {
       }
     }
 
-    // 객체 생성
     const stars: Star[] = [];
     const planets: Planet[] = [];
     const spaceships: Spaceship[] = [];
@@ -390,7 +368,7 @@ export function RetroBackgrounds() {
       stars.push(new Star());
     }
 
-    for (let i = 0; i < 8; i++) { // 행성 개수 증가
+    for (let i = 0; i < 8; i++) { 
       planets.push(new Planet());
     }
 
@@ -398,7 +376,6 @@ export function RetroBackgrounds() {
       spaceships.push(new Spaceship());
     }
 
-    // 애니메이션 루프
     const animate = () => {
       if (!ctx || !canvas) return;
 

@@ -15,7 +15,7 @@ import Slide09Demo from './sliders/Slide09Demo';
 import Slide10Results from './sliders/Slide10Conclusion';
 
 import Navigation from '../../../components/Navigation';
-import RetroBackground from '../../../components/RetroBackground';
+import ProjectBackground from '../../../components/ProjectBackground';
 
 
 const slides = [
@@ -51,10 +51,9 @@ export default function MeshSlicingPage() {
   };
 
   useEffect(() => {
-    // Navbar 높이만큼 아래로 스크롤 (보통 64px~80px)
     window.scrollTo({
-      top: 80, // Navbar 높이에 맞게 조정
-      behavior: 'smooth' // 부드럽게 스크롤
+      top: 80,
+      behavior: 'smooth'
     });
   }, []);
 
@@ -85,8 +84,8 @@ export default function MeshSlicingPage() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
-      <RetroBackground />
+    <div className="">
+      <ProjectBackground />
       
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div

@@ -5,7 +5,27 @@ import { useState, useEffect } from 'react';
 
 export default function Slide09Performance() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-12 py-12 overflow-hidden relative">
+    <div className="w-full h-full flex flex-col items-center overflow-y-auto px-12 pt-20 pb-32 custom-scrollbar relative">
+      {/* Green Scrollbar */}
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(34, 197, 94, 0.1);
+          border-radius: 10px;
+          margin: 8px 0;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+          box-shadow: 0 0 15px rgba(74, 222, 128, 0.8);
+        }
+      `}</style>
       {/* 배경 애니메이션 */}
       <div className="absolute inset-0 opacity-10">
         <motion.div

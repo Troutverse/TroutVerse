@@ -66,7 +66,7 @@ export default function Slide04Flow() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-12 overflow-hidden relative">
+    <div className="w-full h-full flex flex-col items-center justify-center px-12 pt-16 pb-24 overflow-hidden relative">
       {/* 배경 애니메이션 */}
       <div className="absolute inset-0 opacity-10">
         <motion.div

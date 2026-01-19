@@ -5,6 +5,10 @@ import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import { MeshSliceAnimation } from './MeshSliceAnimation';
 import { CapMeshAnimation } from './CapMeshAnimation';
+import { MatchmakingAnimation } from './Matchmakinganimation';
+import { PBDSoftBodyAnimation } from './Pbdsoftbodyanimation';
+import { LoginServiceAnimation } from './Loginserviceanimation';
+import { AllocationServiceAnimation } from './Allocationserviceanimation';
 import Link from 'next/link';
 
 interface ProjectCard3DProps {
@@ -18,7 +22,13 @@ interface ProjectCard3DProps {
 export function ProjectCard3D({ title, description, date, slug, type }: ProjectCard3DProps) {
   if (type === '3d-animation') {
     // slug에 따라 다른 애니메이션 선택
-    const AnimationComponent = slug === 'mesh-creation' ? CapMeshAnimation : MeshSliceAnimation;
+    const AnimationComponent = 
+  slug === 'mesh-slicing' ? MeshSliceAnimation :
+  slug === 'matchmaking-system' ? MatchmakingAnimation :
+  slug === 'pbd-softbody' ? PBDSoftBodyAnimation :
+  slug === 'login-service' ? LoginServiceAnimation :
+  slug === 'allocation-service' ? AllocationServiceAnimation :  
+  CapMeshAnimation;
     
     return (
       <Link href={`/projects/${slug}`} className="group">

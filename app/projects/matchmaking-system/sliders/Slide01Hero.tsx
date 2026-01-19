@@ -5,7 +5,7 @@ import ThreeScene from '@/components/ThreeScene';
 
 export default function Slide01Hero() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden pt-16 pb-24">
       {/* 3D Scene - 배경 */}
       <div className="absolute inset-0 opacity-50">
         <ThreeScene type="knife" />

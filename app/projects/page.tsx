@@ -1,3 +1,4 @@
+// app/projects/page.tsx
 'use client';
 
 import { ProjectCard3D } from '@/components/ProjectCard3D';
@@ -8,7 +9,7 @@ export default function ProjectsPage() {
   const meshSliceProject = {
     title: 'Mesh Slice',
     slug: 'mesh-slicing',
-    date: '2025.12.10',
+    date: '2024.12',
     description: '오브젝트의 자연스러운 메쉬 절단 유니티 프로젝트',
     thumbnail: '/mesh-slice-thumb.jpg',
     type: '3d-animation' as const
@@ -28,7 +29,7 @@ export default function ProjectsPage() {
   const matchmakingProject = {
     title: 'Matchmaking System',
     slug: 'matchmaking-system',
-    date: '', // TODO: 날짜 입력
+    date: '2024.12',
     description: 'SignalR 기반 실시간 4인 매칭 시스템',
     thumbnail: '/matchmaking-thumb.jpg',
     type: '3d-animation' as const
@@ -38,14 +39,41 @@ export default function ProjectsPage() {
   const pbdSoftbodyProject = {
     title: 'PBD Soft Body',
     slug: 'pbd-softbody',
-    date: '', // TODO: 날짜 입력
+    date: '2024.10 - 2024.11',
     description: 'VR 수술 시뮬레이션을 위한 실시간 소프트바디 물리 엔진',
     thumbnail: '/pbd-softbody-thumb.jpg',
     type: '3d-animation' as const
   };
 
+  // Login Service 프로젝트 (NEW)
+  const loginServiceProject = {
+    title: 'Login Service',
+    slug: 'login-service',
+    date: '2024.12',
+    description: 'PlayFab 기반 사용자 인증 및 세션 관리 시스템',
+    thumbnail: '/login-service-thumb.jpg',
+    type: '3d-animation' as const
+  };
+
+  // Allocation Service 프로젝트 (NEW)
+  const allocationServiceProject = {
+    title: 'Allocation Service',
+    slug: 'allocation-service',
+    date: '2025.01',
+    description: 'PlayFab Multiplayer Server 자동 할당 및 관리',
+    thumbnail: '/allocation-service-thumb.jpg',
+    type: '3d-animation' as const
+  };
+
   // 프로젝트 배열
-  const allProjects = [meshSliceProject, meshCreationProject, matchmakingProject, pbdSoftbodyProject];
+  const allProjects = [
+    meshSliceProject, 
+    meshCreationProject, 
+    matchmakingProject, 
+    pbdSoftbodyProject,
+    loginServiceProject,      
+    allocationServiceProject  
+  ];
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
@@ -60,13 +88,11 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto">
           {/* 헤더 섹션 */}
           <div className="mb-16 text-center relative">
-            {/* 서브타이틀 */}
             <p className="mt-6 text-cyan-300/70 font-mono text-sm tracking-widest">
               {'>'} SYSTEM_ARCHIVE.INITIALIZE ()
               <span className="inline-block w-2 h-4 bg-cyan-400 ml-1 animate-pulse"></span>
             </p>
             
-            {/* 장식 라인 */}
             <div className="mt-8 flex justify-center items-center gap-4">
               <div className="h-px w-20 bg-gradient-to-r from-transparent to-cyan-400"></div>
               <div className="w-2 h-2 border border-cyan-400 rotate-45"></div>
@@ -115,7 +141,6 @@ export default function ProjectsPage() {
         </div>
       </main>
 
-      {/* 스캔라인 효과 */}
       <style jsx global>{`
         @keyframes fade-in {
           from {
@@ -130,47 +155,6 @@ export default function ProjectsPage() {
         
         .animate-fade-in {
           animation: fade-in 0.6s ease-out;
-        }
-        
-        @keyframes glitch {
-          0% {
-            transform: translateX(0);
-          }
-          20% {
-            transform: translateX(-2px);
-          }
-          40% {
-            transform: translateX(2px);
-          }
-          60% {
-            transform: translateX(-2px);
-          }
-          80% {
-            transform: translateX(2px);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-        
-        /* CRT 스캔라인 효과 */
-        body::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: repeating-linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.15),
-            rgba(0, 0, 0, 0.15) 1px,
-            transparent 1px,
-            transparent 2px
-          );
-          pointer-events: none;
-          z-index: 9999;
-          opacity: 0.3;
         }
       `}</style>
     </div>

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 export default function Slide06Concurrency() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-12 py-12 overflow-hidden relative">
+    <div className="w-full h-full flex flex-col items-center justify-center px-12 pt-20 pb-24 overflow-hidden relative">
       {/* 배경 그리드 */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

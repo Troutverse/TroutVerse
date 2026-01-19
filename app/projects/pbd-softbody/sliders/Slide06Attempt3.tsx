@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Slide06Attempt3() {
   return (
-    <div className="w-full h-full flex items-center justify-center px-20 gap-12 py-10 pb-30">
+    <div className="w-full h-full flex items-center justify-center px-20 gap-12 pt-20 pb-28">
       {/* 왼쪽: 애니메이션 */}
       <div className="w-[45%] h-full flex items-center justify-center">
         <div className="relative w-full h-[80%] border-2 border-yellow-500/30 rounded-2xl bg-yellow-950/20 overflow-hidden">

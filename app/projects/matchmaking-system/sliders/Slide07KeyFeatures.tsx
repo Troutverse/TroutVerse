@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Slide07KeyFeatures() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-12 py-16 overflow-hidden relative">
+    <div className="w-full h-full flex flex-col items-center justify-center px-12 pt-20 pb-24 overflow-hidden relative">
       {/* 배경 */}
       <div className="absolute inset-0 opacity-10">
         <motion.div

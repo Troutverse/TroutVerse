@@ -4,7 +4,27 @@ import { motion } from 'framer-motion';
 
 export default function Slide11TechnicalStack() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-12 py-16 overflow-hidden relative">
+    <div className="w-full h-full flex flex-col items-center overflow-y-auto px-12 pt-20 pb-32 custom-scrollbar relative">
+      {/* Green Scrollbar */}
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(34, 197, 94, 0.1);
+          border-radius: 10px;
+          margin: 8px 0;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+          box-shadow: 0 0 15px rgba(74, 222, 128, 0.8);
+        }
+      `}</style>
       {/* 배경 */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -85,7 +105,7 @@ export default function Slide11TechnicalStack() {
 
       {/* 하단 선택 이유 */}
       <motion.div
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-5xl z-10"
+        className="w-full max-w-5xl mt-8 z-10"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.4 }}

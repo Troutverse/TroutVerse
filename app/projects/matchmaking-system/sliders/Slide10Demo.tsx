@@ -8,7 +8,7 @@ export default function Slide10Demo() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
-    <div className="w-full h-full flex items-center justify-between px-16 gap-12 overflow-hidden relative">
+    <div className="w-full h-full flex items-center justify-between px-16 gap-12 pt-16 pb-24 overflow-hidden relative">
       {/* 배경 */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -127,7 +127,7 @@ export default function Slide10Demo() {
 
       {/* 오른쪽: 정보 (40%) */}
       <motion.div
-        className="w-[40%] space-y-6 z-10"
+        className="w-[40%] h-full overflow-y-auto space-y-6 z-10 pr-2 custom-scrollbar"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -236,6 +236,23 @@ export default function Slide10Demo() {
         }
         .animate-scan {
           animation: scan 4s linear infinite;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(34, 197, 94, 0.1);
+          border-radius: 10px;
+          margin: 8px 0;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+          box-shadow: 0 0 15px rgba(74, 222, 128, 0.8);
         }
       `}</style>
     </div>

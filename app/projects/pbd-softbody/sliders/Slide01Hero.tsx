@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Slide01Hero() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden pt-16 pb-24">
       {/* 3D 애니메이션 배경 */}
       <div className="absolute inset-0 opacity-30">
         <SoftBodyAnimation />

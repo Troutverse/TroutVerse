@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Slide11Conclusion() {
   return (
-    <div className="w-full h-full flex flex-col items-center px-20 pt-10 pb-32 overflow-y-auto custom-scrollbar">
+    <div className="w-full h-full flex flex-col items-center px-20 pt-20 pb-32 overflow-y-auto custom-scrollbar">
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;

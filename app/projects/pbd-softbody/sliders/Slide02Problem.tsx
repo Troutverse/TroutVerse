@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Slide02Problem() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-20 py-10 pb-30">
+    <div className="w-full h-full flex flex-col items-center justify-center px-20 pt-20 pb-28">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

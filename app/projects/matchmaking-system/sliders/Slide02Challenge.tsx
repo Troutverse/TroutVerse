@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Slide02Challenge() {
   return (
-    <div className="w-full h-full flex items-center justify-center px-16 gap-12 overflow-hidden">
+    <div className="w-full h-full flex items-center justify-center px-16 gap-12 pt-16 pb-24 overflow-hidden">
       {/* 배경 그리드 */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{

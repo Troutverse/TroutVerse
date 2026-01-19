@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Slide03Architecture() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-12 py-16 overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-center px-12 pt-20 pb-24 overflow-hidden">
       {/* 배경 그리드 */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

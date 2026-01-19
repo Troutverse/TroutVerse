@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Slide05TechnicalDeepDive() {
   return (
-    <div className="w-full h-full flex items-center justify-between px-16 py-12 overflow-hidden">
+    <div className="w-full h-full flex items-center justify-between px-16 py-12 pt-24 overflow-hidden">
       {/* 배경 그리드 */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

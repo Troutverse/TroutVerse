@@ -44,7 +44,7 @@ export default function LoginServicePage() {
             Login Service
           </h1>
           <p className="text-xl text-gray-600 mb-2">
-            JWT 기반 실시간 중복 로그인 차단 시스템
+            GRPC 기반 사용자 인증 및 로그인 시스템
           </p>
           <p className="text-gray-500">2025.01 | 개발 기간 2주</p>
         </header>
@@ -59,7 +59,7 @@ export default function LoginServicePage() {
         {/* GitHub */}
         <section className="mb-12">
           <a
-            href="https://github.com/yourusername/login-service"
+            href="https://github.com/Troutverse/StupidGuys-Auth-Server"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium"

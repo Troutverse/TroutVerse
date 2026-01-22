@@ -21,26 +21,6 @@ function CodeSnippet({ code, language = "csharp" }: { code: string; language?: s
   );
 }
 
-// 이미지 컴포넌트
-function ProjectImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
-  return (
-    <div className="my-6">
-      <div className="border border-gray-300 rounded-lg overflow-hidden bg-gray-50">
-        <Image
-          src={src}
-          alt={alt}
-          width={800}
-          height={450}
-          className="w-full h-auto"
-        />
-      </div>
-      {caption && (
-        <p className="text-sm text-gray-500 mt-2 text-center">{caption}</p>
-      )}
-    </div>
-  );
-}
-
 export default function MatchmakingSystemPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -82,7 +62,7 @@ export default function MatchmakingSystemPage() {
         {/* GitHub */}
         <section className="mb-12">
           <a
-            href="https://github.com/Troutverse/MatchmakingSystem"
+            href="https://github.com/Troutverse/StupidGuysServer"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium"

@@ -60,7 +60,7 @@ export default function AllocationServicePage() {
         {/* GitHub */}
         <section className="mb-12">
           <a
-            href="https://github.com/Troutverse/AllocationService"
+            href="https://github.com/Troutverse/StupidGuysServer"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium"

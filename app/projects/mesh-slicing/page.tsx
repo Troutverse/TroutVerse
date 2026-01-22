@@ -21,26 +21,6 @@ function CodeSnippet({ code, language = "csharp" }: { code: string; language?: s
   );
 }
 
-// 이미지 컴포넌트
-function ProjectImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
-  return (
-    <div className="my-6">
-      <div className="border border-gray-300 rounded-lg overflow-hidden bg-gray-50">
-        <Image
-          src={src}
-          alt={alt}
-          width={800}
-          height={450}
-          className="w-full h-auto"
-        />
-      </div>
-      {caption && (
-        <p className="text-sm text-gray-500 mt-2 text-center">{caption}</p>
-      )}
-    </div>
-  );
-}
-
 export default function MeshSlicingPage() {
   return (
     <div className="min-h-screen bg-white">

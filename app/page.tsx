@@ -123,21 +123,21 @@ export default function HomePage() {
             {/* Social Links */}
             <div className="flex gap-4">
               <a
-                href="https://github.com/your-github"
+                href="https://github.com/Troutverse"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-all hover:scale-105"
               >
                 <Github className="w-6 h-6 text-gray-700" />
               </a>
-              <a
+              {/* <a
                 href="https://linkedin.com/in/your-linkedin"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-all hover:scale-105"
               >
                 <Linkedin className="w-6 h-6 text-blue-600" />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

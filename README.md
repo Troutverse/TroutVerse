@@ -1,4 +1,4 @@
-# 👋 Hello, I'm [본인 성함] | VR & Unity Developer
+# 👋 Hello, I'm Trout | VR & Unity Developer
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/render?type=waving&color=auto&height=200&section=header&text=Building%20Digital%20Worlds&fontSize=70" />
@@ -27,22 +27,15 @@
 #### 🌊 [TroutVerse Portfolio](https://trout-verse.vercel.app/)
 > **Next.js**로 제작한 개인 포트폴리오 사이트입니다. 
 > - VR 개발 프로젝트와 AI 관련 작업물을 직관적으로 시각화했습니다.
-
-#### [여기에 가장 자신있는 VR/Unity 프로젝트 이름 작성]
-> - **Role:** 클라이언트 개발
-> - **Key Tech:** Unity, C#, XR Interaction Toolkit
-> - **Summary:** [프로젝트 한줄 설명]
-
 ---
 
 ### 📊 My GitHub Stats
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=[본인의깃허브아이디]&show_icons=true&theme=radical" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=TroutVerse&show_icons=true&theme=radical" alt="GitHub Stats" />
 </p>
 
 ---
 
 ### 📫 Contact Me
 - **Portfolio:** [trout-verse.vercel.app](https://trout-verse.vercel.app/)
-- **Blog:** [블로그 주소가 있다면 입력]
-- **Email:** [이메일 주소 입력]
+- **Email:** troutverse@gmail.com

@@ -52,7 +52,7 @@ export default function PBDSoftBodyPage() {
         {/* 영상 */}
         <section className="mb-12">
           <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden mb-4">
-            <video className="w-full h-full" controls>
+            <video className="w-full h-full" controls muted>
               <source src="/videos/PBDSoftBody.mp4" type="video/mp4" />
             </video>
           </div>

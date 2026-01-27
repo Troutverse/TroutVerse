@@ -51,8 +51,8 @@ export default function CapMeshPage() {
         {/* 영상 */}
         <section className="mb-12">
           <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden mb-4">
-            <video className="w-full h-full" controls>
-              <source src="/videos/MeshSlice2.mp4" type="video/mp4" />
+            <video className="w-full h-full" controls muted>
+              <source src="/videos/MeshCreation.mp4" type="video/mp4" />
             </video>
           </div>
         </section>

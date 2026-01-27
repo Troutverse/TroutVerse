@@ -49,10 +49,12 @@ export default function LoginServicePage() {
           <p className="text-gray-500">2025.01 | 개발 기간 2주</p>
         </header>
 
-        {/* 영상 (플레이스홀더) */}
+        {/* 영상 */}
         <section className="mb-12">
-          <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden flex items-center justify-center">
-            <p className="text-gray-400 font-mono">Demo Video Placeholder</p>
+          <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden mb-4">
+            <video className="w-full h-full" controls muted>
+              <source src="/videos/Login.mp4" type="video/mp4" />
+            </video>
           </div>
         </section>
 

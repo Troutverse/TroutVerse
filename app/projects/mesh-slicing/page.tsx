@@ -53,7 +53,7 @@ export default function MeshSlicingPage() {
         {/* 영상 */}
         <section className="mb-12">
           <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden mb-4">
-            <video className="w-full h-full" controls>
+            <video className="w-full h-full" controls muted>
               <source src="/videos/MeshSlice2.mp4" type="video/mp4" />
             </video>
           </div>
@@ -193,7 +193,7 @@ export default function MeshSlicingPage() {
                 1
               </span>
               <h3 className="text-xl font-bold text-gray-900">
-                Ray-based Approach
+                Ray-based Approach (World Space)
               </h3>
               <span className="text-red-600 font-medium text-sm">
                 실패 - 15 FPS
@@ -207,7 +207,7 @@ export default function MeshSlicingPage() {
                   VR 컨트롤러의 위치에서 Ray를 쏴서 메쉬의 Triangle과 교차점을
                   찾음
                 </li>
-                <li>교차하는 Triangle들을 찾아서 해당 부분만 분리</li>
+                <li>Unity의 Physics.Raycast로 Triangle Index 수집</li>
                 <li>World Space에서 직접 계산 시도</li>
               </ul>
 
@@ -290,7 +290,7 @@ export default function MeshSlicingPage() {
                 3
               </span>
               <h3 className="text-xl font-bold text-gray-900">
-                Triangle-based Approach
+                Triangle-based Approach (Unity Raycast)
               </h3>
               <span className="text-yellow-600 font-medium text-sm">
                 발전 - 55 FPS
@@ -300,16 +300,16 @@ export default function MeshSlicingPage() {
             <div className="pl-11">
               <p className="text-gray-700 mb-3 font-medium">접근 방법:</p>
               <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
-                <li>각 Triangle과 Ray의 교차 여부를 정확하게 검사</li>
-                <li>Local Space에서 Ray-Triangle Intersection 알고리즘 적용</li>
-                <li>교차된 Triangle들을 마킹</li>
+                <li>Unity의 Physics.Raycast로 Triangle Index를 직접 수집</li>
+                <li>Local Space에서 Ray 계산하여 정확도 향상</li>
+                <li>RaycastHit.triangleIndex로 교차된 Triangle 마킹</li>
               </ul>
 
               <p className="text-gray-700 mb-3 font-medium">개선점:</p>
               <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
                 <li>
-                  <strong>정확한 교차 검사:</strong> Möller-Trumbore 알고리즘을
-                  사용하여 정확한 Ray-Triangle 교차 검사
+                  <strong>Unity 내장 함수 활용:</strong> Physics.Raycast의 
+                  최적화된 충돌 검사 활용
                 </li>
                 <li>
                   <strong>성능 향상:</strong> 55 FPS 달성 (목표의 61% 수준)
@@ -320,19 +320,20 @@ export default function MeshSlicingPage() {
                 </li>
               </ul>
 
-              <p className="text-gray-700 mb-3 font-medium">남은 문제:</p>
+              <p className="text-gray-700 mb-3 font-medium">발견한 문제:</p>
               <p className="text-gray-700 mb-4">
-                교차된 Triangle들은 정확하게 찾았지만, 이 Triangle들이 서로
-                연결되어 있는지 (같은 절개선에 속하는지) 판단할 수 없었습니다.
+                Ray 방향과 메쉬 법선 벡터가 거의 평행할 때 일부 Triangle을 
+                놓치거나 중복 감지하는 문제가 발생했습니다. 또한 교차된 Triangle들이 
+                서로 연결되어 있는지(같은 절개선에 속하는지) 판단할 수 없었습니다.
                 100개의 Triangle이 교차되었다면, 이것이 하나의 긴 절개선인지,
                 여러 개의 작은 절개선인지 알 수 없었습니다.
               </p>
 
               <p className="text-gray-700 mb-3 font-medium">배운 점:</p>
               <p className="text-gray-700">
-                Triangle 검출은 성공했지만, "그룹화(Grouping)" 문제가
-                남아있었습니다. 인접한 Triangle들을 하나의 그룹으로 묶는
-                알고리즘이 필요했습니다.
+                Triangle 검출은 성공했지만, Ray 기반 방식의 근본적 한계와 
+                "그룹화(Grouping)" 문제가 남아있었습니다. 인접한 Triangle들을 
+                하나의 그룹으로 묶는 알고리즘이 필요했습니다.
               </p>
             </div>
           </div>
@@ -355,12 +356,14 @@ export default function MeshSlicingPage() {
               <p className="text-gray-700 mb-3 font-medium">핵심 아이디어:</p>
               <p className="text-gray-700 mb-4">
                 교차된 Triangle들을 DFS(Depth-First Search)로 탐색하여 서로
-                인접한 Triangle들을 하나의 연결된 그룹으로 묶는다.
+                인접한 Triangle들을 하나의 연결된 그룹으로 묶는다. 
+                또한 Front Ray와 Back Ray 두 개를 사용하여 양방향에서 검사함으로써 
+                Ray 방향과 법선이 평행할 때의 감지 누락 문제를 해결한다.
               </p>
 
               <p className="text-gray-700 mb-3 font-medium">알고리즘 단계:</p>
               <ol className="list-decimal list-inside text-gray-700 space-y-2 mb-4">
-                <li>Ray와 교차하는 모든 Triangle을 찾아서 마킹</li>
+                <li>Front Ray와 Back Ray로 교차하는 모든 Triangle을 찾아서 마킹</li>
                 <li>
                   마킹된 Triangle 중 아직 방문하지 않은 Triangle에서 DFS 시작
                 </li>
@@ -377,15 +380,6 @@ export default function MeshSlicingPage() {
                   그룹 생성
                 </li>
               </ol>
-
-              {/* 이미지 placeholder */}
-              <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center my-4">
-                <p className="text-gray-500 font-medium mb-2">📸 이미지 위치</p>
-                <p className="text-sm text-gray-400">
-                  /images/attempt4-success.png<br />
-                  (DFS 그룹화 성공 - 완벽한 절단 결과)
-                </p>
-              </div>
 
               <p className="text-gray-700 mb-3 font-medium">결과:</p>
               <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
@@ -437,15 +431,16 @@ export default function MeshSlicingPage() {
             <div className="space-y-6">
               <div>
                 <h4 className="font-bold text-gray-900 mb-2">
-                  1. Ray-Triangle Intersection (Möller-Trumbore)
+                  1. Unity Physics.Raycast + Dual Ray System
                 </h4>
                 <p className="text-gray-700 leading-relaxed">
-                  Möller-Trumbore 알고리즘을 사용하여 Ray와 Triangle의 교차점을
-                  빠르고 정확하게 계산합니다. 이 알고리즘은 행렬 연산 없이 벡터
-                  연산만으로 교차 여부를 판단할 수 있어 실시간 처리에
-                  적합합니다. 교차점의 좌표뿐만 아니라 삼각형 내부의 무게중심
-                  좌표(Barycentric Coordinates)도 계산할 수 있어 정확한 절단면
-                  생성이 가능합니다.
+                  Unity의 Physics.Raycast를 활용하여 Ray와 메쉬의 교차점을 
+                  빠르게 찾습니다. RaycastHit.triangleIndex를 통해 정확히 
+                  어떤 Triangle이 Ray와 교차했는지 알 수 있습니다. 
+                  Front Ray와 Back Ray 두 개를 동시에 사용하여 양방향에서 검사함으로써 
+                  Ray 방향과 법선이 평행할 때의 감지 누락 문제를 해결했습니다.
+                  Local Space로 변환된 Ray를 사용하여 오브젝트의 회전, 크기, 
+                  위치에 관계없이 정확한 교차 검사가 가능합니다.
                 </p>
               </div>
 
@@ -495,7 +490,50 @@ export default function MeshSlicingPage() {
           <div className="mb-8">
             <h3 className="text-xl font-bold text-gray-900 mb-4">핵심 알고리즘 코드</h3>
             
-            <h4 className="font-semibold text-gray-900 mb-3">DFS Flood-fill 그룹화</h4>
+            <h4 className="font-semibold text-gray-900 mb-3">Dual Ray System</h4>
+            <CodeSnippet code={`private void CastFrontRay()
+{
+    Ray frontRay = new Ray(_katanaRay.position, _katanaRay.forward);
+    RaycastHit frontHit;
+
+    if (Physics.Raycast(frontRay, out frontHit, _katanaRayLength, _sliceTargetLayer))
+    {
+        HasFrontHit = true;
+        ProcessHit(frontHit, FrontHitDic, FrontHitPoints);
+    }
+}
+
+private void CastBackRay()
+{
+    Vector3 backRayStartPoint = _katanaRay.position + _katanaRay.forward * _katanaRayLength;
+    Vector3 backDirection = -_katanaRay.forward;
+    Ray backRay = new Ray(backRayStartPoint, backDirection);
+    RaycastHit backHit;
+
+    if (Physics.Raycast(backRay, out backHit, _katanaRayLength, _sliceTargetLayer))
+    {
+        HasBackHit = true;
+        ProcessHit(backHit, BackHitDic, BackHitPoints);
+    }
+}
+
+private void ProcessHit(RaycastHit hit, Dictionary<int, Vector3> hitDataDict, 
+                       List<Vector3> hitPointsList)
+{
+    GameObject hitObject = hit.collider.gameObject;
+    int triIndex = hit.triangleIndex; // Triangle 인덱스 추출
+
+    if (!HitTriangles.Contains(triIndex)) 
+        HitTriangles.Add(triIndex);
+
+    if (!hitDataDict.ContainsKey(triIndex))
+    {
+        hitDataDict[triIndex] = hit.point;
+        hitPointsList.Add(hit.point);
+    }
+}`} />
+
+            <h4 className="font-semibold text-gray-900 mb-3 mt-6">DFS Flood-fill 그룹화</h4>
             <CodeSnippet code={`// 교차된 Triangle들을 DFS로 그룹화
 void GroupTriangles(int startTriangle, HashSet<int> visited, List<int> group)
 {
@@ -557,8 +595,8 @@ public Ray WorldToLocalRay(Ray worldRay, Transform meshTransform)
                 Space로 변환
               </li>
               <li>
-                <strong>교차 검사:</strong> 모든 Triangle에 대해 Ray-Triangle
-                Intersection 수행, 교차된 Triangle 마킹
+                <strong>Dual Ray 교차 검사:</strong> Front Ray와 Back Ray로 
+                Triangle 교차 검사 수행, 교차된 Triangle 마킹
               </li>
               <li>
                 <strong>그룹화:</strong> 마킹된 Triangle들을 DFS로 탐색하여
@@ -586,9 +624,10 @@ public Ray WorldToLocalRay(Ray worldRay, Transform meshTransform)
           <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r">
             <p className="text-gray-800 font-medium mb-2">핵심 성공 요인</p>
             <p className="text-gray-700 mb-3">
-              Ray-Triangle Intersection과 DFS Flood-fill의 결합이
-              핵심이었습니다. 정확한 교차 검사와 효율적인 그룹화를 통해 실시간
-              성능(90+ FPS)과 정확도(100%)를 모두 달성할 수 있었습니다.
+              Unity Physics.Raycast를 활용한 Dual Ray System과 DFS Flood-fill의 
+              결합이 핵심이었습니다. 양방향 Ray 검사로 감지 누락을 방지하고, 
+              효율적인 그룹화를 통해 실시간 성능(90+ FPS)과 정확도(100%)를 
+              모두 달성할 수 있었습니다.
             </p>
             <p className="text-gray-700">
               특히 Local Space에서의 계산과 Arc-Length 기반 Cap Mesh 생성이
@@ -607,74 +646,30 @@ public Ray WorldToLocalRay(Ray worldRay, Transform meshTransform)
 
           <div className="mb-8">
             <h3 className="text-xl font-bold text-gray-900 mb-4">
-              Möller-Trumbore Ray-Triangle Intersection
+              Unity Physics.Raycast + Dual Ray System
             </h3>
             <p className="text-gray-700 leading-relaxed mb-4">
-              이 알고리즘은 3D 그래픽스에서 가장 널리 사용되는 Ray-Triangle 교차
-              검사 방법입니다. 삼각형을 두 개의 Edge 벡터로 표현하고, Ray
-              방정식과 연립하여 교차점의 무게중심 좌표(u, v)와 Ray 파라미터(t)를
-              동시에 계산합니다.
+              Unity의 내장 Physics 시스템을 활용하여 Ray와 메쉬의 교차를 
+              검사합니다. RaycastHit 구조체는 충돌한 정확한 Triangle의 
+              인덱스를 제공하므로, 이를 활용하여 절단할 Triangle들을 
+              수집할 수 있습니다.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              <strong>장점:</strong>
+              <strong>핵심 구현:</strong>
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
-              <li>행렬 연산이 필요 없어 계산량이 적음</li>
-              <li>벡터 연산만으로 교차 여부와 교차점을 동시에 얻음</li>
-              <li>무게중심 좌표를 직접 계산하여 삼각형 내부 판정이 정확함</li>
-              <li>
-                단 한 번의 계산으로 모든 정보를 얻을 수 있어 캐싱 효율이 좋음
-              </li>
+              <li>Front Ray와 Back Ray 두 개를 동시에 쏴서 감지 누락 방지</li>
+              <li>triangleIndex로 정확한 Triangle 식별</li>
+              <li>Dictionary로 중복 Triangle 제거</li>
+              <li>Local Space 변환으로 정확도 향상</li>
             </ul>
-
-            {/* Möller-Trumbore 코드 */}
-            <h4 className="font-semibold text-gray-900 mb-3">구현 코드</h4>
-            <CodeSnippet code={`// Möller-Trumbore 알고리즘 구현
-bool RayIntersectsTriangle(Ray ray, Vector3 v0, Vector3 v1, Vector3 v2, out float t)
-{
-    const float EPSILON = 0.0000001f;
-    
-    // 삼각형의 두 Edge 벡터
-    Vector3 edge1 = v1 - v0;
-    Vector3 edge2 = v2 - v0;
-    
-    // Ray 방향과 edge2의 외적
-    Vector3 h = Vector3.Cross(ray.direction, edge2);
-    float a = Vector3.Dot(edge1, h);
-    
-    // Ray가 삼각형 평면과 평행한 경우
-    if (a > -EPSILON && a < EPSILON)
-    {
-        t = 0;
-        return false;
-    }
-    
-    float f = 1.0f / a;
-    Vector3 s = ray.origin - v0;
-    float u = f * Vector3.Dot(s, h);
-    
-    // u가 범위를 벗어나면 교차하지 않음
-    if (u < 0.0f || u > 1.0f)
-    {
-        t = 0;
-        return false;
-    }
-    
-    Vector3 q = Vector3.Cross(s, edge1);
-    float v = f * Vector3.Dot(ray.direction, q);
-    
-    // v가 범위를 벗어나거나 u+v > 1이면 교차하지 않음
-    if (v < 0.0f || u + v > 1.0f)
-    {
-        t = 0;
-        return false;
-    }
-    
-    // 교차점까지의 거리 계산
-    t = f * Vector3.Dot(edge2, q);
-    
-    return t > EPSILON; // Ray가 삼각형과 교차함
-}`} />
+            
+            <p className="text-gray-700 leading-relaxed mt-4">
+              <strong>Ray 기반 방식의 한계와 해결:</strong> Ray 방향과 메쉬 법선이 
+              거의 평행할 때 일부 Triangle을 놓치는 문제가 있었습니다. 
+              이를 해결하기 위해 Front Ray와 Back Ray를 동시에 사용하여 
+              양방향에서 검사하는 방식으로 안정성을 크게 향상시켰습니다.
+            </p>
           </div>
 
           <div className="mb-8">
@@ -813,7 +808,7 @@ bool RayIntersectsTriangle(Ray ray, Vector3 v0, Vector3 v1, Vector3 v2, out floa
                     Attempt #1
                   </td>
                   <td className="border border-gray-300 px-4 py-3">
-                    Ray-based
+                    Ray (World Space)
                   </td>
                   <td className="border border-gray-300 px-4 py-3 text-red-600 font-semibold">
                     15
@@ -841,7 +836,7 @@ bool RayIntersectsTriangle(Ray ray, Vector3 v0, Vector3 v1, Vector3 v2, out floa
                     Attempt #3
                   </td>
                   <td className="border border-gray-300 px-4 py-3">
-                    Triangle-based
+                    Triangle (Unity)
                   </td>
                   <td className="border border-gray-300 px-4 py-3 text-yellow-600 font-semibold">
                     55
@@ -855,7 +850,7 @@ bool RayIntersectsTriangle(Ray ray, Vector3 v0, Vector3 v1, Vector3 v2, out floa
                     Final
                   </td>
                   <td className="border border-gray-300 px-4 py-3 font-bold">
-                    Triangle + DFS
+                    Dual Ray + DFS
                   </td>
                   <td className="border border-gray-300 px-4 py-3 text-green-600 font-bold">
                     90+

@@ -8,7 +8,6 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
 
-// 애니메이션 임포트
 import { MeshSliceAnimation } from "@/components/MeshSliceAnimation";
 import { CapMeshAnimation } from "@/components/CapMeshAnimation";
 import { MatchmakingAnimation } from "@/components/Matchmakinganimation";
@@ -18,22 +17,22 @@ import { AllocationServiceAnimation } from "@/components/Allocationserviceanimat
 
 const projects = [
   {
-    title: "Mesh Slice",
-    slug: "mesh-slicing",
-    date: "2025.12",
-    description: "오브젝트의 자연스러운 메쉬 절단 유니티 프로젝트",
-    tech: ["Unity", "C#", "Mesh Algorithm"],
-    color: "from-cyan-500 to-blue-500",
-    Animation: MeshSliceAnimation,
+    title: "Allocation Service",
+    slug: "allocation-service",
+    date: "2026.01",
+    description: "PlayFab Multiplayer Server 자동 할당 및 관리",
+    tech: ["PlayFab", "Server", "Cloud"],
+    color: "from-yellow-500 to-orange-500",
+    Animation: AllocationServiceAnimation,
   },
   {
-    title: "Mesh Creation",
-    slug: "mesh-creation",
-    date: "2025.12",
-    description: "Mesh 생성 알고리즘",
-    tech: ["Unity", "C#", "Procedural"],
-    color: "from-green-500 to-emerald-500",
-    Animation: CapMeshAnimation,
+    title: "Login Service",
+    slug: "login-service",
+    date: "2026.01",
+    description: "JWT 기반 사용자 인증 및 세션 관리 시스템",
+    tech: ["REST API", "Auth", "PostgreSQL"],
+    color: "from-indigo-500 to-purple-500",
+    Animation: LoginServiceAnimation,
   },
   {
     title: "Matchmaking System",
@@ -45,6 +44,24 @@ const projects = [
     Animation: MatchmakingAnimation,
   },
   {
+    title: "Mesh Creation",
+    slug: "mesh-creation",
+    date: "2025.12",
+    description: "Mesh 생성 알고리즘",
+    tech: ["Unity", "C#", "Procedural"],
+    color: "from-green-500 to-emerald-500",
+    Animation: CapMeshAnimation,
+  },
+  {
+    title: "Mesh Slice",
+    slug: "mesh-slicing",
+    date: "2025.12",
+    description: "오브젝트의 자연스러운 메쉬 절단 유니티 프로젝트",
+    tech: ["Unity", "C#", "Mesh Algorithm"],
+    color: "from-cyan-500 to-blue-500",
+    Animation: MeshSliceAnimation,
+  },
+  {
     title: "PBD Soft Body",
     slug: "pbd-softbody",
     date: "2025.11",
@@ -52,24 +69,6 @@ const projects = [
     tech: ["Unity", "Physics", "VR"],
     color: "from-orange-500 to-red-500",
     Animation: PBDSoftBodyAnimation,
-  },
-  {
-    title: "Login Service",
-    slug: "login-service",
-    date: "2026.01",
-    description: "GRPC 기반 사용자 인증 및 세션 관리 시스템",
-    tech: ["GRPC", "Auth", "PostgreSQL"],
-    color: "from-indigo-500 to-purple-500",
-    Animation: LoginServiceAnimation,
-  },
-  {
-    title: "Allocation Service",
-    slug: "allocation-service",
-    date: "2026.01",
-    description: "PlayFab Multiplayer Server 자동 할당 및 관리",
-    tech: ["PlayFab", "Server", "Cloud"],
-    color: "from-yellow-500 to-orange-500",
-    Animation: AllocationServiceAnimation,
   },
 ];
 
@@ -195,9 +194,11 @@ export default function HomePage() {
                       <OrbitControls enableZoom={false} enablePan={false} />
                     </Suspense>
                   </Canvas>
-                  
+
                   {/* Color Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 pointer-events-none`} />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 pointer-events-none`}
+                  />
                 </div>
 
                 {/* Content */}

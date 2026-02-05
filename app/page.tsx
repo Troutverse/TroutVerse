@@ -34,6 +34,14 @@ const PlayVideos = [
     tech: ["Unity", "VR", "Physics", "Mesh"],
     image: "/images/vr-surgery-thumbnail.png",
   },
+  {
+    title: "Beat Saber",
+    slug: "beat-saber",
+    date: "2025.10 - 2025.11",
+    description: "VR 리듬 액션 게임 (비트세이버 모작)",
+    tech: ["Unity", "VR", "Rhythm", "Audio"],
+    image: "/images/beat-saber-thumbnail.png",
+  },
 ];
 
 // 기술 컴포넌트

@@ -14,6 +14,7 @@ import { MatchmakingAnimation } from "@/components/Matchmakinganimation";
 import { PBDSoftBodyAnimation } from "@/components/Pbdsoftbodyanimation";
 import { LoginServiceAnimation } from "@/components/Loginserviceanimation";
 import { AllocationServiceAnimation } from "@/components/Allocationserviceanimation";
+import { GPSConversionAnimation } from "@/components/GPSConversionAnimation";
 
 // PlayVideos
 const PlayVideos = [
@@ -35,6 +36,14 @@ const PlayVideos = [
     image: "/images/vr-surgery-thumbnail.png",
   },
   {
+    title: "PokemonGO",
+    slug: "pokemongo",
+    date: "2024.09 - 2024.10",
+    description: "GPS 기반 위치 추적 AR 몬스터 수집 게임",
+    tech: ["Unity", "GPS", "Google Maps API", "VContainer"],
+    image: "/images/PokemonGo.png",
+  },
+  {
     title: "Beat Saber",
     slug: "beat-saber",
     date: "2025.10 - 2025.11",
@@ -44,7 +53,6 @@ const PlayVideos = [
   },
 ];
 
-// 기술 컴포넌트
 const technicalProjects = [
   {
     title: "Mesh Slice",
@@ -54,6 +62,15 @@ const technicalProjects = [
     tech: ["Unity", "C#", "Mesh Algorithm"],
     color: "from-cyan-500 to-blue-500",
     Animation: MeshSliceAnimation,
+  },
+  {
+    title: "GPS Coordinate Conversion",
+    slug: "gps-coordinate-conversion",
+    date: "2024.09",
+    description: "실제 GPS 좌표를 Unity 가상 세계로 변환하는 수학",
+    tech: ["Unity", "GPS", "Mercator Projection"],
+    color: "from-green-500 to-teal-500",
+    Animation: GPSConversionAnimation,
   },
   {
     title: "PBD Soft Body",

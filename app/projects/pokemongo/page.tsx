@@ -31,7 +31,7 @@ export default function PokemonGoPage() {
             <p className="text-xl text-gray-600 mb-2">
               GPS 기반 위치 추적 AR 몬스터 수집 게임
             </p>
-            <p className="text-gray-500 font-mono">2024.11 - 2024.12</p>
+            <p className="text-gray-500 font-mono">2025.11 - 2025.12</p>
           </header>
 
           {/* 영상 */}

@@ -38,7 +38,7 @@ const PlayVideos = [
   {
     title: "PokemonGO",
     slug: "pokemongo",
-    date: "2024.09 - 2024.10",
+    date: "2025.11 - 2025.12",
     description: "GPS 기반 위치 추적 AR 몬스터 수집 게임",
     tech: ["Unity", "GPS", "Google Maps API", "VContainer"],
     image: "/images/PokemonGo.png",

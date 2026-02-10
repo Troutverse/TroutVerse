@@ -46,7 +46,7 @@ export default function GPSCoordinateConversionPage() {
           <p className="text-xl text-gray-600 mb-2">
             실제 GPS 좌표를 Unity 가상 세계로 변환하는 수학
           </p>
-          <p className="text-gray-500">2024.09 | 개발 기간 2주</p>
+          <p className="text-gray-500">2025.12 | 개발 기간 2주</p>
         </header>
 
         {/* 영상 - 주석 처리 (나중에 추가)

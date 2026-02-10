@@ -66,7 +66,7 @@ const technicalProjects = [
   {
     title: "GPS Coordinate Conversion",
     slug: "gps-coordinate-conversion",
-    date: "2024.09",
+    date: "2025.12",
     description: "실제 GPS 좌표를 Unity 가상 세계로 변환하는 수학",
     tech: ["Unity", "GPS", "Mercator Projection"],
     color: "from-green-500 to-teal-500",

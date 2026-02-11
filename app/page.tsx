@@ -16,8 +16,8 @@ import { LoginServiceAnimation } from "@/components/Loginserviceanimation";
 import { AllocationServiceAnimation } from "@/components/Allocationserviceanimation";
 import { GPSConversionAnimation } from "@/components/GPSConversionAnimation";
 
-// PlayVideos
-const PlayVideos = [
+// Projects
+const Projects = [
   {
     title: "StupidGuys",
     slug: "stupid-guys",
@@ -275,6 +275,7 @@ export default function HomePage() {
               "React",
               "Next.js",
               "TypeScript",
+              "WebGL",
               "Python",
               "Docker",
             ].map((tech) => (
@@ -293,11 +294,11 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="flex items-center gap-3 mb-6">
           <Gamepad2 className="w-8 h-8 text-purple-600" />
-          <h2 className="text-3xl font-bold text-gray-900">PlayVideo</h2>
+          <h2 className="text-3xl font-bold text-gray-900">Projects</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {PlayVideos.map((project) => (
+          {Projects.map((project) => (
             <ProjectCard
               key={project.slug}
               project={project}
